@@ -408,60 +408,29 @@
             function u(e) {
                 return new RegExp("/".concat(e.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "(?=[/?#]|$)"))
             }
-
             function d(e) {
-                return (0, r.useEffect)(() => {
-                    var t;
-                    e.beforeSend && (null == (t = window.va) || t.call(window, "beforeSend", e.beforeSend))
-                }, [e.beforeSend]), (0, r.useEffect)(() => {
-                    var t;
-                    ! function() {
-                        var e;
-                        let t = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {
-                            debug: !0
-                        };
-                        if (!i()) return;
-                        (function() {
-                            let e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : "auto";
-                            if ("auto" === e) {
-                                window.vam = s();
-                                return
-                            }
-                            window.vam = e
-                        })(t.mode), c(), t.beforeSend && (null == (e = window.va) || e.call(window, "beforeSend", t.beforeSend));
-                        let n = t.scriptSrc ? t.scriptSrc : l() ? "https://va.vercel-scripts.com/v1/script.debug.js" : t.basePath ? "".concat(t.basePath, "/insights/script.js") : "/_vercel/insights/script.js";
-                        if (document.head.querySelector('script[src*="'.concat(n, '"]'))) return;
-                        let r = document.createElement("script");
-                        r.src = n, r.defer = !0, r.dataset.sdkn = "@vercel/analytics" + (t.framework ? "/".concat(t.framework) : ""), r.dataset.sdkv = "1.5.0", t.disableAutoTrack && (r.dataset.disableAutoTrack = "1"), t.endpoint ? r.dataset.endpoint = t.endpoint : t.basePath && (r.dataset.endpoint = "".concat(t.basePath, "/insights")), t.dsn && (r.dataset.dsn = t.dsn), r.onerror = () => {
-                            let e = l() ? "Please check if any ad blockers are enabled and try again." : "Be sure to enable Web Analytics for your project and deploy again. See https://vercel.com/docs/analytics/quickstart for more information.";
-                            console.log("[Vercel Web Analytics] Failed to load script from ".concat(n, ". ").concat(e))
-                        }, l() && !1 === t.debug && (r.dataset.debug = "false"), document.head.appendChild(r)
-                    }({
-                        framework: e.framework || "react",
-                        basePath: null !== (t = e.basePath) && void 0 !== t ? t : function() {
-                            if (void 0 !== a && void 0 !== a.env) return a.env.REACT_APP_VERCEL_OBSERVABILITY_BASEPATH
-                        }(),
-                        ...void 0 !== e.route && {
-                            disableAutoTrack: !0
-                        },
-                        ...e
-                    })
-                }, []), (0, r.useEffect)(() => {
-                    e.route && e.path && function(e) {
-                        var t;
-                        let {
-                            route: n,
-                            path: r
-                        } = e;
-                        null == (t = window.va) || t.call(window, "pageview", {
-                            route: n,
-                            path: r
-                        })
-                    }({
-                        route: e.route,
-                        path: e.path
-                    })
-                }, [e.route, e.path]), null
+                // Mantém o hook de beforeSend se você quiser reaproveitar
+                (0, r.useEffect)(() => {
+                    if (e.beforeSend) {
+                        // aqui você pode chamar sua própria função customizada se precisar
+                        console.log("beforeSend hook chamado");
+                    }
+                }, [e.beforeSend]);
+
+                // Antes tinha todo o carregamento do script da Vercel, mas foi removido
+                (0, r.useEffect)(() => {
+
+                }, []);
+
+                // Página vista (caso queira usar sua própria lógica de log)
+                (0, r.useEffect)(() => {
+                    if (e.route && e.path) {
+                        console.log("Pageview:", { route: e.route, path: e.path });
+                        // aqui você poderia mandar para o Google Analytics, Plausible, etc.
+                    }
+                }, [e.route, e.path]);
+
+                return null;
             }
             var f = () => {
                 let e = (0, o.useParams)(),

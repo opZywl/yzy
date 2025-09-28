@@ -89,7 +89,7 @@
         if (void 0 !== n)
             for (var i, c, f = document.getElementsByTagName("script"), a = 0; a < f.length; a++) {
                 var l = f[a];
-                if (l.getAttribute("src") == e || l.getAttribute("data-webpack") == o + n) {
+                if (l.getAttribute("src") === e || l.getAttribute("data-webpack") === o + n) {
                     i = l;
                     break
                 }
@@ -121,7 +121,7 @@
         }, "undefined" != typeof trustedTypes && trustedTypes.createPolicy && (u = trustedTypes.createPolicy("nextjs#bundler", u))), u
     }, d.tu = function(e) {
         return d.tt().createScriptURL(e)
-    }, d.p = "/_next/", i = {
+    }, d.p = "/js/", i = {
         272: 0,
         939: 0
     }, d.f.j = function(e, t) {
@@ -161,13 +161,4 @@
         for (e && e(t); f < o.length; f++) r = o[f], d.o(i, r) && i[r] && i[r][0](), i[r] = 0;
         return d.O(a)
     }, (f = self.webpackChunk_N_E = self.webpackChunk_N_E || []).forEach(c.bind(null, 0)), f.push = c.bind(null, f.push.bind(f))
-}();;
-(function() {
-    if (!/(?:^|;\s)__vercel_toolbar=1(?:;|$)/.test(document.cookie)) return;
-    var s = document.createElement('script');
-    s.src = 'https://vercel.live/_next-live/feedback/feedback.js';
-    s.setAttribute("data-explicit-opt-in", "true");
-    s.setAttribute("data-cookie-opt-in", "true");
-    s.setAttribute("data-deployment-id", "dpl_9XHeJxTcC7dj1jN4QnqQCj9mWiFC");
-    ((document.head || document.documentElement).appendChild(s))
-})();
+}();
