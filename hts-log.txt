@@ -1,0 +1,15 @@
+HTTrack3.49-2+htsswf+htsjava launched on Tue, 23 Sep 2025 21:30:57 at https://www.zzzzshawn.cloud/ +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar
+(winhttrack -qwC2%Ps2u1%s%uN0%I0p3DaK0H0%kf2A25000%f#f -F "Mozilla/4.5 (compatible; HTTrack 3.0x; Windows 98)" -%F "<!-- Mirrored from %s%s by HTTrack Website Copier/3.x [XR&CO'2014], %s -->" -%l "en, *" https://www.zzzzshawn.cloud/ -O1 "C:\My Web Sites\portfolioskid" +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar )
+
+Information, Warnings and Errors reported for this mirror:
+note:	the hts-log.txt file, and hts-cache folder, may contain sensitive information,
+	such as username/password authentication for websites mirrored in this project
+	do not share these files/folders if you want these information to remain private
+
+21:31:13	Error: 	"Not Found" (404) at link https://www.zzzzshawn.cloud/site.webmanifest (from https://www.zzzzshawn.cloud/)
+21:31:13	Error: 	"Not Found" (404) at link https://www.zzzzshawn.cloud/favicon-16x16.png (from https://www.zzzzshawn.cloud/)
+21:31:13	Error: 	"Not Found" (404) at link https://www.zzzzshawn.cloud/favicon-32x32.png (from https://www.zzzzshawn.cloud/)
+21:31:13	Error: 	"Not Found" (404) at link https://www.zzzzshawn.cloud/apple-touch-icon.png (from https://www.zzzzshawn.cloud/)
+
+HTTrack Website Copier/3.49-2 mirror complete in 19 seconds : 55 links scanned, 50 files written (4046388 bytes overall) [3339498 bytes received at 175763 bytes/sec], 1301388 bytes transferred using HTTP compression in 25 files, ratio 36%
+(4 errors, 0 warnings, 0 messages)
