@@ -29,16 +29,17 @@
                         dateTime: e.toISOString(),
                         "aria-label": "Current time",
                         children: (e => {
-                            let t = e.toLocaleDateString("en-US", {
+                            let t = e.toLocaleDateString("pt-BR", {
                                     month: "2-digit",
                                     day: "2-digit",
                                     year: "numeric"
                                 }),
-                                n = e.toLocaleTimeString("en-US", {
+                                n = e.toLocaleTimeString("pt-BR", {
                                     hour: "2-digit",
                                     minute: "2-digit",
                                     second: "2-digit",
-                                    hour12: !0
+                                    hour12: false,
+                                    hourCycle: "h23"
                                 });
                             return "".concat(t, ", ").concat(n)
                         })(e)
