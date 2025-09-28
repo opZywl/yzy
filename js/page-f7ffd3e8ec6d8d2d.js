@@ -1,1 +1,675 @@
-(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[33],{5818:function(e,t,n){Promise.resolve().then(n.bind(n,4908)),Promise.resolve().then(n.bind(n,9667)),Promise.resolve().then(n.bind(n,3974)),Promise.resolve().then(n.bind(n,5971)),Promise.resolve().then(n.bind(n,1069)),Promise.resolve().then(n.t.bind(n,6323,23)),Promise.resolve().then(n.t.bind(n,5295,23))},3974:function(e,t,n){"use strict";n.d(t,{default:function(){return o}});var r=n(9368),a=n(6041);function o(){let[e,t]=(0,a.useState)(null);return((0,a.useEffect)(()=>{let e=setInterval(()=>{t(new Date)},1e3);return t(new Date),()=>{clearInterval(e)}},[]),e)?(0,r.jsx)("div",{className:"flex items-center justify-center",children:(0,r.jsx)("time",{className:"text-[10px] font-light text-zinc-500 font-mono tabular-nums tracking-wider ",dateTime:e.toISOString(),"aria-label":"Current time",children:(e=>{let t=e.toLocaleDateString("en-US",{month:"2-digit",day:"2-digit",year:"numeric"}),n=e.toLocaleTimeString("en-US",{hour:"2-digit",minute:"2-digit",second:"2-digit",hour12:!0});return"".concat(t,", ").concat(n)})(e)})}):null}},9667:function(e,t,n){"use strict";var r=n(9368),a=n(6041),o=n(6795);let s=e=>{let t=(0,a.useRef)(0),n=(0,a.useRef)(0),r=(0,a.useRef)(0),o=(0,a.useRef)(new Date),s=(0,a.useRef)(null),i=(0,a.useRef)(null),c=(0,a.useCallback)(n=>{let[r,a]=[s.current,i.current];if(!r||!a)return;a.style.filter="blur(".concat(Math.min(8/n-8,100),"px)"),a.style.opacity="".concat(100*Math.pow(n,.4),"%");let o=1-n;r.style.filter="blur(".concat(Math.min(8/o-8,100),"px)"),r.style.opacity="".concat(100*Math.pow(o,.4),"%"),r.textContent=e[t.current%e.length],a.textContent=e[(t.current+1)%e.length]},[e]),l=(0,a.useCallback)(()=>{n.current-=r.current,r.current=0;let e=n.current/1.5;e>1&&(r.current=3,e=1),c(e),1===e&&t.current++},[c]),u=(0,a.useCallback)(()=>{n.current=0;let[e,t]=[s.current,i.current];e&&t&&(t.style.filter="none",t.style.opacity="100%",e.style.filter="none",e.style.opacity="0%")},[]);return(0,a.useEffect)(()=>{let e;let t=()=>{e=requestAnimationFrame(t);let n=new Date,a=(n.getTime()-o.current.getTime())/1e3;o.current=n,r.current-=a,r.current<=0?l():u()};return t(),()=>{cancelAnimationFrame(e)}},[l,u]),{text1Ref:s,text2Ref:i}},i=e=>{let{texts:t}=e,{text1Ref:n,text2Ref:a}=s(t);return(0,r.jsxs)(r.Fragment,{children:[(0,r.jsx)("span",{className:" w-full inline-block inset-x-0 top-0 m-auto",ref:n}),(0,r.jsx)("span",{className:"absolute w-full inline-block inset-x-0 top-0 m-auto",ref:a})]})},c=()=>(0,r.jsx)("svg",{id:"filters",className:"hidden",preserveAspectRatio:"xMidYMid slice",children:(0,r.jsx)("defs",{children:(0,r.jsx)("filter",{id:"threshold",children:(0,r.jsx)("feColorMatrix",{in:"SourceGraphic",type:"matrix",values:"1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 255 -140"})})})});t.default=e=>{let{texts:t,className:n}=e;return(0,r.jsxs)("div",{className:(0,o.cn)("[filter:url(#threshold)_blur(0.6px)] w-full text-lg leading-none text-center relative font-sans font-bold max-w-screen-md mx-auto",n),children:[(0,r.jsx)(i,{texts:t}),(0,r.jsx)(c,{})]})}},5971:function(e,t,n){"use strict";var r=n(9368),a=n(327),o=n(6041);t.default=()=>{var e;let[t,n]=(0,o.useState)(void 0),[s,i]=(0,o.useState)(!0),[c,l]=(0,o.useState)(!1),u=async()=>{try{let e=await fetch("https://api.nasa.gov/planetary/apod?api_key=QgNSB8hldKZrOkdydd5sDsFVSjlJALghQsI9lfEb&count=1",{method:"GET"});if(!e.ok)throw Error("Failed to fetch");let t=await e.json();n(t[0])}catch(e){console.error("Error fetching NASA image:",e)}finally{i(!1)}};return(0,o.useEffect)(()=>{u()},[]),(0,r.jsxs)(r.Fragment,{children:[(0,r.jsx)("div",{className:"sm:col-start-4 sm:col-end-6 sm:row-start-1 sm:row-end-4 relative border border-zinc-700/20 rounded-3xl max-sm:h-[400px]",children:s?(0,r.jsx)("div",{className:"absolute p-2 size-full rounded-3xl flex items-center justify-center",children:(0,r.jsx)("p",{className:"font-mono text-center dark:text-dark-1",children:"Fetching from NASA..."})}):t&&(0,r.jsx)(a.default,{src:c?"/assets/orion.jpg":(e=t.hdurl||t.url).startsWith("//")?"https:".concat(e):e,alt:t.title||"NASA Image",width:1024,height:1024,onLoad:()=>i(!1),onError:()=>l(!0),className:"object-cover size-full rounded-3xl"})}),(0,r.jsx)("div",{className:"sm:col-start-4 sm:col-end-6 sm:row-start-4 sm:row-end-5",children:t&&(0,r.jsxs)("div",{className:"p-0 flex flex-col justify-start h-full px-1 items-end overflow-hidden",children:[(0,r.jsxs)("p",{className:"font-mono text-xs line-clamp-1 text-zinc-200 dark:text-dark-4",children:[(0,r.jsx)("span",{className:"text-zinc-500 dark:text-zinc-600",children:"from NASA:"})," ",c?"2006-08-15":t.date]}),(0,r.jsx)("p",{className:"font-mono text-[0.6rem] text-end line-clamp-1 text-wrap text-zinc-300 dark:text-dark-4",children:c?"The Sword of Orion":t.copyright&&t.copyright})]})})]})}},4908:function(e,t,n){"use strict";n.d(t,{BentoCard:function(){return j},BentoGrid:function(){return k}});var r=n(9368),a=n(6041),o=n(6795),s=n(8157),i=n(4658),c=n(3604);function l(e){let t=(0,c.h)(()=>(0,s.BX)(e)),{isStatic:n}=(0,a.useContext)(i._);if(n){let[,n]=(0,a.useState)(e);(0,a.useEffect)(()=>t.on("change",n),[])}return t}var u=n(1108),d=n(8590),m=n(1389),f=n(6366);function h(e){return"number"==typeof e?e:parseFloat(e)}function x(e,t={}){let{isStatic:n}=(0,a.useContext)(i._),r=(0,a.useRef)(null),o=l((0,m.i)(e)?h(e.get()):e),s=(0,a.useRef)(o.get()),c=(0,a.useRef)(()=>{}),x=()=>{let e=r.current;e&&0===e.time&&e.sample(f.frameData.delta),g(),r.current=(0,u.y)({keyframes:[o.get(),s.current],velocity:o.getVelocity(),type:"spring",restDelta:.001,restSpeed:.01,...t,onUpdate:c.current})},g=()=>{r.current&&r.current.stop()};return(0,a.useInsertionEffect)(()=>o.attach((e,t)=>n?t(e):(s.current=e,c.current=t,f.Wi.update(x),o.get()),g),[JSON.stringify(t)]),(0,d.L)(()=>{if((0,m.i)(e))return e.on("change",e=>o.set(h(e)))},[o]),o}var g=n(5523);let p=e=>e&&"object"==typeof e&&e.mix,v=e=>p(e)?e.mix:void 0;function b(e,t){let n=l(t()),r=()=>n.set(t());return r(),(0,d.L)(()=>{let t=()=>f.Wi.preRender(r,!1,!0),n=e.map(e=>e.on("change",t));return()=>{n.forEach(e=>e()),(0,f.Pn)(r)}}),n}function y(e,t){let n=(0,c.h)(()=>[]);return b(e,()=>{n.length=0;let r=e.length;for(let t=0;t<r;t++)n[t]=e[t].get();return t(n)})}var w=n(4527);let k=e=>{let{children:t,className:n}=e;return(0,r.jsx)("div",{className:(0,o.cn)("grid w-full grid-cols-3 gap-3 max-sm:gap-2",n),children:t})},S=()=>{let[e,t]=(0,a.useState)(!1);return(0,a.useEffect)(()=>{let e=()=>{t(window.innerWidth<=768)};return e(),window.addEventListener("resize",e),()=>window.removeEventListener("resize",e)},[]),e},j=e=>{let{className:t,background:n,initial:i,animate:c,transition:u,whileHover:d}=e,m=(0,a.useRef)(null),[f,h]=(0,a.useState)(!1),p=S(),k=l(0),j=l(0),N={damping:50,stiffness:900},E=x(k,N),_=x(j,N),C=function(e,t,n,r){if("function"==typeof e)return function(e){s.S1.current=[],e();let t=b(s.S1.current,e);return s.S1.current=void 0,t}(e);let a="function"==typeof t?t:function(...e){let t=!Array.isArray(e[0]),n=t?0:-1,r=e[0+n],a=e[1+n],o=e[2+n],s=e[3+n],i=(0,g.s)(a,o,{mixer:v(o[0]),...s});return t?i(r):i}(t,void 0,void 0);return Array.isArray(e)?y(e,a):y([e],([e])=>a(e))}([E,_],e=>{let[t,n]=e;return 1-Math.abs(t+n)/1e4});return(0,r.jsxs)(w.E.div,{ref:m,drag:!p,dragConstraints:!p&&m,dragElastic:!p&&.6,dragMomentum:!1,onDragStart:p?void 0:()=>h(!0),onDragEnd:p?void 0:()=>{h(!1),E.set(0),_.set(0)},style:p?void 0:{x:E,y:_,scale:C},whileHover:d,role:"button",tabIndex:0,"aria-label":"Draggable element",initial:i,animate:c,transition:u,className:(0,o.cn)("relative flex w-full rounded-xl border dark:border-dark-5 border-dark-3","transform-gpu bg-dark-1 [box-shadow:0_0px_60px_-20px_#ffffff1f_inset] dark:[box-shadow:3px_3px_40px_5px_#c6c6c635_inset] cursor-grab","dark:bg-white",t),children:[(0,r.jsx)("div",{className:"w-full h-full",children:n}),(0,r.jsx)("div",{className:(0,o.cn)("pointer-events-none h-0 absolute bottom-0 flex w-full translate-y-10 transform-gpu flex-row items-center p-4 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100")}),(0,r.jsx)("div",{className:"pointer-events-none h-0 absolute inset-0 transform-gpu transition-all duration-300 group-hover:bg-neutral-800/10"})]})}},1069:function(e,t,n){"use strict";n.d(t,{default:function(){return s}});var r=n(9368),a=n(6932),o=n(9169);function s(){let{theme:e,setTheme:t}=(0,a.F)(),n=()=>{switch(e){case"light":t("dark");break;case"dark":t("light")}};return(0,r.jsxs)(o.z,{onClick:()=>{document.startViewTransition||n(),document.startViewTransition(n)},size:"icon",className:"rounded-full !border-none bg-transparent ",children:[(0,r.jsx)("p",{className:" w-[1.2rem] scale-100 transition-all duration-100 dark:scale-0 text-white dark:text-zinc-500 font-bold hover:[box-shadow:1px_1px_50px_-1px_#fff] bg-none rounded-full",children:"夜"}),(0,r.jsx)("p",{className:"absolute w-[1.2rem] scale-0 transition-all duration-100 dark:scale-100 text-zinc-500 dark:text-black font-bold hover:[box-shadow:1px_1px_50px_20px_#c6c6c650] bg-none rounded-full ",children:"朝"})]})}},9169:function(e,t,n){"use strict";n.d(t,{z:function(){return l}});var r=n(9368),a=n(6041),o=n(674),s=n(2357),i=n(6795);let c=(0,s.j)("inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 ",{variants:{variant:{default:"bg-primary text-primary-foreground",destructive:"bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90",outline:"border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground",secondary:"bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80",ghost:"hover:bg-accent hover:text-accent-foreground",link:"text-primary underline-offset-4 hover:underline"},size:{default:"h-9 px-4 py-2",sm:"h-8 rounded-md px-3 text-xs",lg:"h-10 rounded-md px-8",icon:"h-9 w-9"}},defaultVariants:{variant:"default",size:"default"}}),l=a.forwardRef((e,t)=>{let{className:n,variant:a,size:s,asChild:l=!1,...u}=e,d=l?o.g7:"button";return(0,r.jsx)(d,{className:(0,i.cn)(c({variant:a,size:s,className:n})),ref:t,...u})});l.displayName="Button"},6795:function(e,t,n){"use strict";n.d(t,{cn:function(){return o}});var r=n(4488),a=n(9010);function o(){for(var e=arguments.length,t=Array(e),n=0;n<e;n++)t[n]=arguments[n];return(0,a.m6)((0,r.W)(t))}},6932:function(e,t,n){"use strict";n.d(t,{F:function(){return l},f:function(){return u}});var r=n(6041),a=["light","dark"],o="(prefers-color-scheme: dark)",s="undefined"==typeof window,i=r.createContext(void 0),c={setTheme:e=>{},themes:[]},l=()=>{var e;return null!=(e=r.useContext(i))?e:c},u=e=>r.useContext(i)?e.children:r.createElement(m,{...e}),d=["light","dark"],m=e=>{let{forcedTheme:t,disableTransitionOnChange:n=!1,enableSystem:s=!0,enableColorScheme:c=!0,storageKey:l="theme",themes:u=d,defaultTheme:m=s?"system":"light",attribute:p="data-theme",value:v,children:b,nonce:y}=e,[w,k]=r.useState(()=>h(l,m)),[S,j]=r.useState(()=>h(l)),N=v?Object.values(v):u,E=r.useCallback(e=>{let t=e;if(!t)return;"system"===e&&s&&(t=g());let r=v?v[t]:t,o=n?x():null,i=document.documentElement;if("class"===p?(i.classList.remove(...N),r&&i.classList.add(r)):r?i.setAttribute(p,r):i.removeAttribute(p),c){let e=a.includes(m)?m:null,n=a.includes(t)?t:e;i.style.colorScheme=n}null==o||o()},[]),_=r.useCallback(e=>{let t="function"==typeof e?e(e):e;k(t);try{localStorage.setItem(l,t)}catch(e){}},[t]),C=r.useCallback(e=>{j(g(e)),"system"===w&&s&&!t&&E("system")},[w,t]);r.useEffect(()=>{let e=window.matchMedia(o);return e.addListener(C),C(e),()=>e.removeListener(C)},[C]),r.useEffect(()=>{let e=e=>{e.key===l&&_(e.newValue||m)};return window.addEventListener("storage",e),()=>window.removeEventListener("storage",e)},[_]),r.useEffect(()=>{E(null!=t?t:w)},[t,w]);let T=r.useMemo(()=>({theme:w,setTheme:_,forcedTheme:t,resolvedTheme:"system"===w?S:w,themes:s?[...u,"system"]:u,systemTheme:s?S:void 0}),[w,_,t,S,s,u]);return r.createElement(i.Provider,{value:T},r.createElement(f,{forcedTheme:t,disableTransitionOnChange:n,enableSystem:s,enableColorScheme:c,storageKey:l,themes:u,defaultTheme:m,attribute:p,value:v,children:b,attrs:N,nonce:y}),b)},f=r.memo(e=>{let{forcedTheme:t,storageKey:n,attribute:s,enableSystem:i,enableColorScheme:c,defaultTheme:l,value:u,attrs:d,nonce:m}=e,f="system"===l,h="class"===s?"var d=document.documentElement,c=d.classList;".concat("c.remove(".concat(d.map(e=>"'".concat(e,"'")).join(","),")"),";"):"var d=document.documentElement,n='".concat(s,"',s='setAttribute';"),x=c?(a.includes(l)?l:null)?"if(e==='light'||e==='dark'||!e)d.style.colorScheme=e||'".concat(l,"'"):"if(e==='light'||e==='dark')d.style.colorScheme=e":"",g=function(e){let t=arguments.length>1&&void 0!==arguments[1]&&arguments[1],n=!(arguments.length>2)||void 0===arguments[2]||arguments[2],r=u?u[e]:e,o=t?e+"|| ''":"'".concat(r,"'"),i="";return c&&n&&!t&&a.includes(e)&&(i+="d.style.colorScheme = '".concat(e,"';")),"class"===s?t||r?i+="c.add(".concat(o,")"):i+="null":r&&(i+="d[s](n,".concat(o,")")),i},p=t?"!function(){".concat(h).concat(g(t),"}()"):i?"!function(){try{".concat(h,"var e=localStorage.getItem('").concat(n,"');if('system'===e||(!e&&").concat(f,")){var t='").concat(o,"',m=window.matchMedia(t);if(m.media!==t||m.matches){").concat(g("dark"),"}else{").concat(g("light"),"}}else if(e){").concat(u?"var x=".concat(JSON.stringify(u),";"):"").concat(g(u?"x[e]":"e",!0),"}").concat(f?"":"else{"+g(l,!1,!1)+"}").concat(x,"}catch(e){}}()"):"!function(){try{".concat(h,"var e=localStorage.getItem('").concat(n,"');if(e){").concat(u?"var x=".concat(JSON.stringify(u),";"):"").concat(g(u?"x[e]":"e",!0),"}else{").concat(g(l,!1,!1),";}").concat(x,"}catch(t){}}();");return r.createElement("script",{nonce:m,dangerouslySetInnerHTML:{__html:p}})}),h=(e,t)=>{let n;if(!s){try{n=localStorage.getItem(e)||void 0}catch(e){}return n||t}},x=()=>{let e=document.createElement("style");return e.appendChild(document.createTextNode("*{-webkit-transition:none!important;-moz-transition:none!important;-o-transition:none!important;-ms-transition:none!important;transition:none!important}")),document.head.appendChild(e),()=>{window.getComputedStyle(document.body),setTimeout(()=>{document.head.removeChild(e)},1)}},g=e=>(e||(e=window.matchMedia(o)),e.matches?"dark":"light")}},function(e){e.O(0,[601,860,111,487,744],function(){return e(e.s=5818)}),_N_E=e.O()}]);
+(self.webpackChunk_N_E = self.webpackChunk_N_E || []).push([
+    [33], {
+        5818: function(e, t, n) {
+            Promise.resolve().then(n.bind(n, 4908)), Promise.resolve().then(n.bind(n, 9667)), Promise.resolve().then(n.bind(n, 3974)), Promise.resolve().then(n.bind(n, 5971)), Promise.resolve().then(n.bind(n, 1069)), Promise.resolve().then(n.t.bind(n, 6323, 23)), Promise.resolve().then(n.t.bind(n, 5295, 23))
+        },
+        3974: function(e, t, n) {
+            "use strict";
+            n.d(t, {
+                default: function() {
+                    return o
+                }
+            });
+            var r = n(9368),
+                a = n(6041);
+
+            function o() {
+                let [e, t] = (0, a.useState)(null);
+                return ((0, a.useEffect)(() => {
+                    let e = setInterval(() => {
+                        t(new Date)
+                    }, 1e3);
+                    return t(new Date), () => {
+                        clearInterval(e)
+                    }
+                }, []), e) ? (0, r.jsx)("div", {
+                    className: "flex items-center justify-center",
+                    children: (0, r.jsx)("time", {
+                        className: "text-[10px] font-light text-zinc-500 font-mono tabular-nums tracking-wider ",
+                        dateTime: e.toISOString(),
+                        "aria-label": "Current time",
+                        children: (e => {
+                            let t = e.toLocaleDateString("en-US", {
+                                    month: "2-digit",
+                                    day: "2-digit",
+                                    year: "numeric"
+                                }),
+                                n = e.toLocaleTimeString("en-US", {
+                                    hour: "2-digit",
+                                    minute: "2-digit",
+                                    second: "2-digit",
+                                    hour12: !0
+                                });
+                            return "".concat(t, ", ").concat(n)
+                        })(e)
+                    })
+                }) : null
+            }
+        },
+        9667: function(e, t, n) {
+            "use strict";
+            var r = n(9368),
+                a = n(6041),
+                o = n(6795);
+            let s = e => {
+                    let t = (0, a.useRef)(0),
+                        n = (0, a.useRef)(0),
+                        r = (0, a.useRef)(0),
+                        o = (0, a.useRef)(new Date),
+                        s = (0, a.useRef)(null),
+                        i = (0, a.useRef)(null),
+                        c = (0, a.useCallback)(n => {
+                            let [r, a] = [s.current, i.current];
+                            if (!r || !a) return;
+                            a.style.filter = "blur(".concat(Math.min(8 / n - 8, 100), "px)"), a.style.opacity = "".concat(100 * Math.pow(n, .4), "%");
+                            let o = 1 - n;
+                            r.style.filter = "blur(".concat(Math.min(8 / o - 8, 100), "px)"), r.style.opacity = "".concat(100 * Math.pow(o, .4), "%"), r.textContent = e[t.current % e.length], a.textContent = e[(t.current + 1) % e.length]
+                        }, [e]),
+                        l = (0, a.useCallback)(() => {
+                            n.current -= r.current, r.current = 0;
+                            let e = n.current / 1.5;
+                            e > 1 && (r.current = 3, e = 1), c(e), 1 === e && t.current++
+                        }, [c]),
+                        u = (0, a.useCallback)(() => {
+                            n.current = 0;
+                            let [e, t] = [s.current, i.current];
+                            e && t && (t.style.filter = "none", t.style.opacity = "100%", e.style.filter = "none", e.style.opacity = "0%")
+                        }, []);
+                    return (0, a.useEffect)(() => {
+                        let e;
+                        let t = () => {
+                            e = requestAnimationFrame(t);
+                            let n = new Date,
+                                a = (n.getTime() - o.current.getTime()) / 1e3;
+                            o.current = n, r.current -= a, r.current <= 0 ? l() : u()
+                        };
+                        return t(), () => {
+                            cancelAnimationFrame(e)
+                        }
+                    }, [l, u]), {
+                        text1Ref: s,
+                        text2Ref: i
+                    }
+                },
+                i = e => {
+                    let {
+                        texts: t
+                    } = e, {
+                        text1Ref: n,
+                        text2Ref: a
+                    } = s(t);
+                    return (0, r.jsxs)(r.Fragment, {
+                        children: [(0, r.jsx)("span", {
+                            className: " w-full inline-block inset-x-0 top-0 m-auto",
+                            ref: n
+                        }), (0, r.jsx)("span", {
+                            className: "absolute w-full inline-block inset-x-0 top-0 m-auto",
+                            ref: a
+                        })]
+                    })
+                },
+                c = () => (0, r.jsx)("svg", {
+                    id: "filters",
+                    className: "hidden",
+                    preserveAspectRatio: "xMidYMid slice",
+                    children: (0, r.jsx)("defs", {
+                        children: (0, r.jsx)("filter", {
+                            id: "threshold",
+                            children: (0, r.jsx)("feColorMatrix", {
+                                in: "SourceGraphic",
+                                type: "matrix",
+                                values: "1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 255 -140"
+                            })
+                        })
+                    })
+                });
+            t.default = e => {
+                let {
+                    texts: t,
+                    className: n
+                } = e;
+                return (0, r.jsxs)("div", {
+                    className: (0, o.cn)("[filter:url(#threshold)_blur(0.6px)] w-full text-lg leading-none text-center relative font-sans font-bold max-w-screen-md mx-auto", n),
+                    children: [(0, r.jsx)(i, {
+                        texts: t
+                    }), (0, r.jsx)(c, {})]
+                })
+            }
+        },
+        5971: function(e, t, n) {
+            "use strict";
+            var r = n(9368),
+                o = n(6041); // React (useState, useEffect)
+
+            t.default = () => {
+                var e;
+                let [t, n] = (0, o.useState)(void 0),   // dados da API NASA
+                    [s, i] = (0, o.useState)(!0),       // carregando
+                    [c, l] = (0, o.useState)(!1);       // erro/fallback
+
+                const u = async () => {
+                    try {
+                        let e = await fetch(
+                            "https://api.nasa.gov/planetary/apod?api_key=QgNSB8hldKZrOkdydd5sDsFVSjlJALghQsI9lfEb&count=1",
+                            { method: "GET" }
+                        );
+                        if (!e.ok) throw Error("Failed to fetch");
+                        let t = await e.json();
+                        n(t[0]);
+                    } catch (e) {
+                        console.error("Error fetching NASA image:", e);
+                        l(!0); // ativa fallback
+                    } finally {
+                        i(!1); // tira o loading
+                    }
+                };
+
+                (0, o.useEffect)(() => {
+                    u();
+                }, []);
+
+                return (0, r.jsxs)(r.Fragment, {
+                    children: [
+                        // Bloco da Imagem
+                        (0, r.jsx)("div", {
+                            className:
+                                "sm:col-start-4 sm:col-end-6 sm:row-start-1 sm:row-end-4 relative border border-zinc-700/20 rounded-3xl max-sm:h-[400px]",
+                            children: s
+                                ? (0, r.jsx)("div", {
+                                    className:
+                                        "absolute p-2 size-full rounded-3xl flex items-center justify-center",
+                                    children: (0, r.jsx)("p", {
+                                        className: "font-mono text-center dark:text-dark-1",
+                                        children: "Fetching from NASA..."
+                                    })
+                                })
+                                : (0, r.jsx)("img", {
+                                    src: (() => {
+                                        // fallback manual
+                                        if (c) return "/images/solaranalemma2024.jpg";
+
+                                        // só usa imagem se realmente for image
+                                        if (t?.media_type !== "image")
+                                            return "/images/solaranalemma2024.jpg";
+
+                                        let url = t?.hdurl || t?.url || "";
+                                        if (!url) return "/images/solaranalemma2024.jpg";
+                                        if (url.startsWith("//")) return "https:" + url;
+                                        return url;
+                                    })(),
+                                    alt: c
+                                        ? "The Sword of Orion"
+                                        : (t?.title || "NASA Image"),
+                                    width: 1024,
+                                    height: 1024,
+                                    onError: () => l(!0),
+                                    className: "object-cover size-full rounded-3xl"
+                                })
+                        }),
+
+                        // Bloco de texto (from NASA / The Sword)
+                        (0, r.jsx)("div", {
+                            className:
+                                "sm:col-start-4 sm:col-end-6 sm:row-start-4 sm:row-end-5",
+                            children:
+                                t &&
+                                (0, r.jsxs)("div", {
+                                    className:
+                                        "p-0 flex flex-col justify-start h-full px-1 items-end overflow-hidden",
+                                    children: [
+                                        (0, r.jsxs)("p", {
+                                            className:
+                                                "font-mono text-xs line-clamp-1 text-zinc-200 dark:text-dark-4",
+                                            children: [
+                                                (0, r.jsx)("span", {
+                                                    className: "text-zinc-500 dark:text-zinc-600",
+                                                    children: "from NASA:"
+                                                }),
+                                                " ",
+                                                c ? "2006-08-15" : t.date
+                                            ]
+                                        }),
+                                        (0, r.jsx)("p", {
+                                            className:
+                                                "font-mono text-[0.6rem] text-end line-clamp-1 text-wrap text-zinc-300 dark:text-dark-4",
+                                            children: c ? "The Sword of Orion" : (t?.copyright || "")
+                                        })
+                                    ]
+                                })
+                        })
+                    ]
+                });
+            };
+        }
+        ,
+        4908: function(e, t, n) {
+            "use strict";
+            n.d(t, {
+                BentoCard: function() {
+                    return j
+                },
+                BentoGrid: function() {
+                    return k
+                }
+            });
+            var r = n(9368),
+                a = n(6041),
+                o = n(6795),
+                s = n(8157),
+                i = n(4658),
+                c = n(3604);
+
+            function l(e) {
+                let t = (0, c.h)(() => (0, s.BX)(e)),
+                    {
+                        isStatic: n
+                    } = (0, a.useContext)(i._);
+                if (n) {
+                    let [, n] = (0, a.useState)(e);
+                    (0, a.useEffect)(() => t.on("change", n), [])
+                }
+                return t
+            }
+            var u = n(1108),
+                d = n(8590),
+                m = n(1389),
+                f = n(6366);
+
+            function h(e) {
+                return "number" == typeof e ? e : parseFloat(e)
+            }
+
+            function x(e, t = {}) {
+                let {
+                    isStatic: n
+                } = (0, a.useContext)(i._), r = (0, a.useRef)(null), o = l((0, m.i)(e) ? h(e.get()) : e), s = (0, a.useRef)(o.get()), c = (0, a.useRef)(() => {}), x = () => {
+                    let e = r.current;
+                    e && 0 === e.time && e.sample(f.frameData.delta), g(), r.current = (0, u.y)({
+                        keyframes: [o.get(), s.current],
+                        velocity: o.getVelocity(),
+                        type: "spring",
+                        restDelta: .001,
+                        restSpeed: .01,
+                        ...t,
+                        onUpdate: c.current
+                    })
+                }, g = () => {
+                    r.current && r.current.stop()
+                };
+                return (0, a.useInsertionEffect)(() => o.attach((e, t) => n ? t(e) : (s.current = e, c.current = t, f.Wi.update(x), o.get()), g), [JSON.stringify(t)]), (0, d.L)(() => {
+                    if ((0, m.i)(e)) return e.on("change", e => o.set(h(e)))
+                }, [o]), o
+            }
+            var g = n(5523);
+            let p = e => e && "object" == typeof e && e.mix,
+                v = e => p(e) ? e.mix : void 0;
+
+            function b(e, t) {
+                let n = l(t()),
+                    r = () => n.set(t());
+                return r(), (0, d.L)(() => {
+                    let t = () => f.Wi.preRender(r, !1, !0),
+                        n = e.map(e => e.on("change", t));
+                    return () => {
+                        n.forEach(e => e()), (0, f.Pn)(r)
+                    }
+                }), n
+            }
+
+            function y(e, t) {
+                let n = (0, c.h)(() => []);
+                return b(e, () => {
+                    n.length = 0;
+                    let r = e.length;
+                    for (let t = 0; t < r; t++) n[t] = e[t].get();
+                    return t(n)
+                })
+            }
+            var w = n(4527);
+            let k = e => {
+                    let {
+                        children: t,
+                        className: n
+                    } = e;
+                    return (0, r.jsx)("div", {
+                        className: (0, o.cn)("grid w-full grid-cols-3 gap-3 max-sm:gap-2", n),
+                        children: t
+                    })
+                },
+                S = () => {
+                    let [e, t] = (0, a.useState)(!1);
+                    return (0, a.useEffect)(() => {
+                        let e = () => {
+                            t(window.innerWidth <= 768)
+                        };
+                        return e(), window.addEventListener("resize", e), () => window.removeEventListener("resize", e)
+                    }, []), e
+                },
+                j = e => {
+                    let {
+                        className: t,
+                        background: n,
+                        initial: i,
+                        animate: c,
+                        transition: u,
+                        whileHover: d
+                    } = e, m = (0, a.useRef)(null), [f, h] = (0, a.useState)(!1), p = S(), k = l(0), j = l(0), N = {
+                        damping: 50,
+                        stiffness: 900
+                    }, E = x(k, N), _ = x(j, N), C = function(e, t, n, r) {
+                        if ("function" == typeof e) return function(e) {
+                            s.S1.current = [], e();
+                            let t = b(s.S1.current, e);
+                            return s.S1.current = void 0, t
+                        }(e);
+                        let a = "function" == typeof t ? t : function(...e) {
+                            let t = !Array.isArray(e[0]),
+                                n = t ? 0 : -1,
+                                r = e[0 + n],
+                                a = e[1 + n],
+                                o = e[2 + n],
+                                s = e[3 + n],
+                                i = (0, g.s)(a, o, {
+                                    mixer: v(o[0]),
+                                    ...s
+                                });
+                            return t ? i(r) : i
+                        }(t, void 0, void 0);
+                        return Array.isArray(e) ? y(e, a) : y([e], ([e]) => a(e))
+                    }([E, _], e => {
+                        let [t, n] = e;
+                        return 1 - Math.abs(t + n) / 1e4
+                    });
+                    return (0, r.jsxs)(w.E.div, {
+                        ref: m,
+                        drag: !p,
+                        dragConstraints: !p && m,
+                        dragElastic: !p && .6,
+                        dragMomentum: !1,
+                        onDragStart: p ? void 0 : () => h(!0),
+                        onDragEnd: p ? void 0 : () => {
+                            h(!1), E.set(0), _.set(0)
+                        },
+                        style: p ? void 0 : {
+                            x: E,
+                            y: _,
+                            scale: C
+                        },
+                        whileHover: d,
+                        role: "button",
+                        tabIndex: 0,
+                        "aria-label": "Draggable element",
+                        initial: i,
+                        animate: c,
+                        transition: u,
+                        className: (0, o.cn)("relative flex w-full rounded-xl border dark:border-dark-5 border-dark-3", "transform-gpu bg-dark-1 [box-shadow:0_0px_60px_-20px_#ffffff1f_inset] dark:[box-shadow:3px_3px_40px_5px_#c6c6c635_inset] cursor-grab", "dark:bg-white", t),
+                        children: [(0, r.jsx)("div", {
+                            className: "w-full h-full",
+                            children: n
+                        }), (0, r.jsx)("div", {
+                            className: (0, o.cn)("pointer-events-none h-0 absolute bottom-0 flex w-full translate-y-10 transform-gpu flex-row items-center p-4 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100")
+                        }), (0, r.jsx)("div", {
+                            className: "pointer-events-none h-0 absolute inset-0 transform-gpu transition-all duration-300 group-hover:bg-neutral-800/10"
+                        })]
+                    })
+                }
+        },
+        1069: function(e, t, n) {
+            "use strict";
+            n.d(t, {
+                default: function() {
+                    return s
+                }
+            });
+            var r = n(9368),
+                a = n(6932),
+                o = n(9169);
+
+            function s() {
+                let {
+                    theme: e,
+                    setTheme: t
+                } = (0, a.F)(), n = () => {
+                    switch (e) {
+                        case "light":
+                            t("dark");
+                            break;
+                        case "dark":
+                            t("light")
+                    }
+                };
+                return (0, r.jsxs)(o.z, {
+                    onClick: () => {
+                        document.startViewTransition || n(), document.startViewTransition(n)
+                    },
+                    size: "icon",
+                    className: "rounded-full !border-none bg-transparent ",
+                    children: [(0, r.jsx)("p", {
+                        className: " w-[1.2rem] scale-100 transition-all duration-100 dark:scale-0 text-white dark:text-zinc-500 font-bold hover:[box-shadow:1px_1px_50px_-1px_#fff] bg-none rounded-full",
+                        children: "夜"
+                    }), (0, r.jsx)("p", {
+                        className: "absolute w-[1.2rem] scale-0 transition-all duration-100 dark:scale-100 text-zinc-500 dark:text-black font-bold hover:[box-shadow:1px_1px_50px_20px_#c6c6c650] bg-none rounded-full ",
+                        children: "朝"
+                    })]
+                })
+            }
+        },
+        9169: function(e, t, n) {
+            "use strict";
+            n.d(t, {
+                z: function() {
+                    return l
+                }
+            });
+            var r = n(9368),
+                a = n(6041),
+                o = n(674),
+                s = n(2357),
+                i = n(6795);
+            let c = (0, s.j)("inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 ", {
+                    variants: {
+                        variant: {
+                            default: "bg-primary text-primary-foreground",
+                            destructive: "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90",
+                            outline: "border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground",
+                            secondary: "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80",
+                            ghost: "hover:bg-accent hover:text-accent-foreground",
+                            link: "text-primary underline-offset-4 hover:underline"
+                        },
+                        size: {
+                            default: "h-9 px-4 py-2",
+                            sm: "h-8 rounded-md px-3 text-xs",
+                            lg: "h-10 rounded-md px-8",
+                            icon: "h-9 w-9"
+                        }
+                    },
+                    defaultVariants: {
+                        variant: "default",
+                        size: "default"
+                    }
+                }),
+                l = a.forwardRef((e, t) => {
+                    let {
+                        className: n,
+                        variant: a,
+                        size: s,
+                        asChild: l = !1,
+                        ...u
+                    } = e, d = l ? o.g7 : "button";
+                    return (0, r.jsx)(d, {
+                        className: (0, i.cn)(c({
+                            variant: a,
+                            size: s,
+                            className: n
+                        })),
+                        ref: t,
+                        ...u
+                    })
+                });
+            l.displayName = "Button"
+        },
+        6795: function(e, t, n) {
+            "use strict";
+            n.d(t, {
+                cn: function() {
+                    return o
+                }
+            });
+            var r = n(4488),
+                a = n(9010);
+
+            function o() {
+                for (var e = arguments.length, t = Array(e), n = 0; n < e; n++) t[n] = arguments[n];
+                return (0, a.m6)((0, r.W)(t))
+            }
+        },
+        6932: function(e, t, n) {
+            "use strict";
+            n.d(t, {
+                F: function() {
+                    return l
+                },
+                f: function() {
+                    return u
+                }
+            });
+            var r = n(6041),
+                a = ["light", "dark"],
+                o = "(prefers-color-scheme: dark)",
+                s = "undefined" == typeof window,
+                i = r.createContext(void 0),
+                c = {
+                    setTheme: e => {},
+                    themes: []
+                },
+                l = () => {
+                    var e;
+                    return null != (e = r.useContext(i)) ? e : c
+                },
+                u = e => r.useContext(i) ? e.children : r.createElement(m, {
+                    ...e
+                }),
+                d = ["light", "dark"],
+                m = e => {
+                    let {
+                        forcedTheme: t,
+                        disableTransitionOnChange: n = !1,
+                        enableSystem: s = !0,
+                        enableColorScheme: c = !0,
+                        storageKey: l = "theme",
+                        themes: u = d,
+                        defaultTheme: m = s ? "system" : "light",
+                        attribute: p = "data-theme",
+                        value: v,
+                        children: b,
+                        nonce: y
+                    } = e, [w, k] = r.useState(() => h(l, m)), [S, j] = r.useState(() => h(l)), N = v ? Object.values(v) : u, E = r.useCallback(e => {
+                        let t = e;
+                        if (!t) return;
+                        "system" === e && s && (t = g());
+                        let r = v ? v[t] : t,
+                            o = n ? x() : null,
+                            i = document.documentElement;
+                        if ("class" === p ? (i.classList.remove(...N), r && i.classList.add(r)) : r ? i.setAttribute(p, r) : i.removeAttribute(p), c) {
+                            let e = a.includes(m) ? m : null,
+                                n = a.includes(t) ? t : e;
+                            i.style.colorScheme = n
+                        }
+                        null == o || o()
+                    }, []), _ = r.useCallback(e => {
+                        let t = "function" == typeof e ? e(e) : e;
+                        k(t);
+                        try {
+                            localStorage.setItem(l, t)
+                        } catch (e) {}
+                    }, [t]), C = r.useCallback(e => {
+                        j(g(e)), "system" === w && s && !t && E("system")
+                    }, [w, t]);
+                    r.useEffect(() => {
+                        let e = window.matchMedia(o);
+                        return e.addListener(C), C(e), () => e.removeListener(C)
+                    }, [C]), r.useEffect(() => {
+                        let e = e => {
+                            e.key === l && _(e.newValue || m)
+                        };
+                        return window.addEventListener("storage", e), () => window.removeEventListener("storage", e)
+                    }, [_]), r.useEffect(() => {
+                        E(null != t ? t : w)
+                    }, [t, w]);
+                    let T = r.useMemo(() => ({
+                        theme: w,
+                        setTheme: _,
+                        forcedTheme: t,
+                        resolvedTheme: "system" === w ? S : w,
+                        themes: s ? [...u, "system"] : u,
+                        systemTheme: s ? S : void 0
+                    }), [w, _, t, S, s, u]);
+                    return r.createElement(i.Provider, {
+                        value: T
+                    }, r.createElement(f, {
+                        forcedTheme: t,
+                        disableTransitionOnChange: n,
+                        enableSystem: s,
+                        enableColorScheme: c,
+                        storageKey: l,
+                        themes: u,
+                        defaultTheme: m,
+                        attribute: p,
+                        value: v,
+                        children: b,
+                        attrs: N,
+                        nonce: y
+                    }), b)
+                },
+                f = r.memo(e => {
+                    let {
+                        forcedTheme: t,
+                        storageKey: n,
+                        attribute: s,
+                        enableSystem: i,
+                        enableColorScheme: c,
+                        defaultTheme: l,
+                        value: u,
+                        attrs: d,
+                        nonce: m
+                    } = e, f = "system" === l, h = "class" === s ? "var d=document.documentElement,c=d.classList;".concat("c.remove(".concat(d.map(e => "'".concat(e, "'")).join(","), ")"), ";") : "var d=document.documentElement,n='".concat(s, "',s='setAttribute';"), x = c ? (a.includes(l) ? l : null) ? "if(e==='light'||e==='dark'||!e)d.style.colorScheme=e||'".concat(l, "'") : "if(e==='light'||e==='dark')d.style.colorScheme=e" : "", g = function(e) {
+                        let t = arguments.length > 1 && void 0 !== arguments[1] && arguments[1],
+                            n = !(arguments.length > 2) || void 0 === arguments[2] || arguments[2],
+                            r = u ? u[e] : e,
+                            o = t ? e + "|| ''" : "'".concat(r, "'"),
+                            i = "";
+                        return c && n && !t && a.includes(e) && (i += "d.style.colorScheme = '".concat(e, "';")), "class" === s ? t || r ? i += "c.add(".concat(o, ")") : i += "null" : r && (i += "d[s](n,".concat(o, ")")), i
+                    }, p = t ? "!function(){".concat(h).concat(g(t), "}()") : i ? "!function(){try{".concat(h, "var e=localStorage.getItem('").concat(n, "');if('system'===e||(!e&&").concat(f, ")){var t='").concat(o, "',m=window.matchMedia(t);if(m.media!==t||m.matches){").concat(g("dark"), "}else{").concat(g("light"), "}}else if(e){").concat(u ? "var x=".concat(JSON.stringify(u), ";") : "").concat(g(u ? "x[e]" : "e", !0), "}").concat(f ? "" : "else{" + g(l, !1, !1) + "}").concat(x, "}catch(e){}}()") : "!function(){try{".concat(h, "var e=localStorage.getItem('").concat(n, "');if(e){").concat(u ? "var x=".concat(JSON.stringify(u), ";") : "").concat(g(u ? "x[e]" : "e", !0), "}else{").concat(g(l, !1, !1), ";}").concat(x, "}catch(t){}}();");
+                    return r.createElement("script", {
+                        nonce: m,
+                        dangerouslySetInnerHTML: {
+                            __html: p
+                        }
+                    })
+                }),
+                h = (e, t) => {
+                    let n;
+                    if (!s) {
+                        try {
+                            n = localStorage.getItem(e) || void 0
+                        } catch (e) {}
+                        return n || t
+                    }
+                },
+                x = () => {
+                    let e = document.createElement("style");
+                    return e.appendChild(document.createTextNode("*{-webkit-transition:none!important;-moz-transition:none!important;-o-transition:none!important;-ms-transition:none!important;transition:none!important}")), document.head.appendChild(e), () => {
+                        window.getComputedStyle(document.body), setTimeout(() => {
+                            document.head.removeChild(e)
+                        }, 1)
+                    }
+                },
+                g = e => (e || (e = window.matchMedia(o)), e.matches ? "dark" : "light")
+        }
+    },
+    function(e) {
+        e.O(0, [601, 860, 111, 487, 744], function() {
+            return e(e.s = 5818)
+        }), _N_E = e.O()
+    }
+]);
