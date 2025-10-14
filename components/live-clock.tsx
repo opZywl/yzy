@@ -1,7 +1,3 @@
-"use client";
-
-import { useEffect, useState } from "react";
-
 export function LiveClock() {
   const [now, setNow] = useState<Date | null>(null);
 
