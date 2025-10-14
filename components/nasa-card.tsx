@@ -1,121 +1,118 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
-
+import { useTheme } from "next-themes";
+import { useEffect, useMemo, useState } from "react";
+import { createPortal } from "react-dom";
+import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
-type NasaApod = {
-  title?: string;
-  url?: string;
-  hdurl?: string;
-  date?: string;
-  media_type?: string;
-  copyright?: string;
-};
+const DANCE_DURATION = 4200;
 
-const FALLBACK_IMAGE = "/images/solaranalemma2024.jpg";
+export function ThemeToggle({ className }: { className?: string }) {
+    const { theme, setTheme } = useTheme();
+    const [mounted, setMounted] = useState(false);
+    const [isDancing, setIsDancing] = useState(false);
+    const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout | null>(null);
 
-export function useNasaApod() {
-  const [data, setData] = useState<NasaApod | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(false);
-  const [broken, setBroken] = useState(false);
+    useEffect(() => setMounted(true), []);
 
-  useEffect(() => {
-    let ignore = false;
+    useEffect(() => {
+        return () => {
+            if (timeoutId) clearTimeout(timeoutId);
+        };
+    }, [timeoutId]);
 
-    async function load() {
-      try {
-        const response = await fetch(
-          "https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&count=1"
+    const isDark = theme === "dark";
+
+    // ✅ Always call useMemo, even if mounted is false
+    const overlay = useMemo(() => {
+        if (!isDancing) return null;
+
+        return createPortal(
+            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black">
+                <div className="relative h-[80vh] w-[80vw] max-w-[720px]">
+                    <Image
+                        src="/images/theL.gif"
+                        alt="L dançando"
+                        fill
+                        sizes="(min-width: 1024px) 720px, 90vw"
+                        priority
+                        className="object-contain brightness-110 contrast-125"
+                    />
+                </div>
+            </div>,
+            document.body
         );
-        if (!response.ok) throw new Error("Failed to fetch");
-        const [item] = (await response.json()) as NasaApod[];
-        if (!ignore) setData(item);
-      } catch (err) {
-        console.error("Failed to fetch NASA APOD", err);
-        if (!ignore) setError(true);
-      } finally {
-        if (!ignore) setIsLoading(false);
-      }
+    }, [isDancing]);
+
+    const handleToggle = () => {
+        if (!mounted) return;
+
+        if (isDark) {
+            setIsDancing(true);
+            const id = setTimeout(() => {
+                setTheme("light");
+                setIsDancing(false);
+                setTimeoutId(null);
+            }, DANCE_DURATION);
+            setTimeoutId(id);
+            return;
+        }
+
+        setTheme("dark");
+    };
+
+    // ✅ Keep the early return AFTER all hooks
+    if (!mounted) {
+        return (
+            <Button
+                size="icon"
+                variant="ghost"
+                aria-label="Toggle theme"
+                className={cn(
+                    "rounded-2xl border border-black/10 bg-white/80 text-zinc-900",
+                    "dark:border-white/10 dark:bg-[#1b1b1d] dark:text-white",
+                    className
+                )}
+            >
+                <span className="text-lg font-semibold leading-none">L</span>
+            </Button>
+        );
     }
 
-    load();
-
-    return () => {
-      ignore = true;
-    };
-  }, []);
-
-  const imageSrc = error || broken
-    ? FALLBACK_IMAGE
-    : data?.media_type === "image"
-    ? data?.hdurl || data?.url || FALLBACK_IMAGE
-    : FALLBACK_IMAGE;
-
-  const markAsBroken = () => setBroken(true);
-
-  return { data, isLoading, error: error || broken, imageSrc, markAsBroken };
-}
-
-export function NasaCard({ className }: { className?: string }) {
-  const { data, isLoading, error, imageSrc, markAsBroken } = useNasaApod();
-
-  return (
-    <div
-      className={cn(
-        "flex h-full flex-col gap-5",
-        className
-      )}
-    >
-      <header className="flex items-center justify-between text-[11px] font-mono uppercase tracking-[0.4em] text-zinc-500 dark:text-zinc-400">
-        <span>Fetching from NASA...</span>
-        <span className="flex items-center gap-2 text-xs text-emerald-500">
-          <span
-            className={cn(
-              "h-2.5 w-2.5 rounded-full",
-              isLoading ? "animate-pulse bg-emerald-400/70" : "bg-emerald-400"
-            )}
-          />
-          {isLoading ? "loading" : "synced"}
-        </span>
-      </header>
-      <div className="relative flex-1 overflow-hidden rounded-[28px] border border-black/10 bg-zinc-900/20 dark:border-white/10 dark:bg-white/5">
-        {isLoading ? (
-          <div className="flex h-full flex-col items-center justify-center gap-2 text-xs uppercase tracking-[0.3em] text-zinc-500 dark:text-zinc-400">
-            <span>carregando</span>
-            <span className="font-semibold">imagem astronômica do dia</span>
-          </div>
-        ) : (
-          <Image
-            src={imageSrc}
-            alt={data?.title ?? "Imagem da NASA"}
-            fill
-            sizes="(min-width: 1024px) 360px, 90vw"
-            className="object-cover"
-            onError={markAsBroken}
-            priority={false}
-          />
-        )}
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent p-5 text-white">
-          <p className="text-[11px] uppercase tracking-[0.35em] text-white/70">Ghost Town</p>
-          <p className="mt-1 text-sm font-medium text-white">
-            {error
-              ? "The Sword of Orion"
-              : data?.title || "Astronomy Picture of the Day"}
-          </p>
-        </div>
-      </div>
-      <div className="flex items-center justify-between rounded-2xl border border-black/10 bg-white/80 px-4 py-4 text-xs text-zinc-700 shadow-[0_24px_60px_-40px_rgba(15,23,42,0.35)] dark:border-white/10 dark:bg-white/5 dark:text-zinc-300">
-        <div className="space-y-1">
-          <p className="text-[11px] uppercase tracking-[0.35em] text-zinc-500 dark:text-zinc-400">Playlist</p>
-          <p className="text-sm font-semibold text-zinc-800 dark:text-white">&ldquo;The game be bleak one day&rdquo;</p>
-        </div>
-        <div className="relative h-14 w-14 overflow-hidden rounded-2xl border border-black/10 dark:border-white/10">
-          <Image src="/images/naruto24.jpg" alt="Naruto" fill sizes="56px" className="object-cover" />
-        </div>
-      </div>
-    </div>
-  );
+    return (
+        <>
+            <Button
+                size="icon"
+                variant="ghost"
+                aria-label="Alternar tema"
+                onClick={handleToggle}
+                className={cn(
+                    "relative h-12 w-12 overflow-hidden rounded-2xl border border-black/10 bg-white/80 text-zinc-900 shadow-[0_30px_70px_-40px_rgba(15,23,42,0.4)] transition",
+                    "hover:border-black/20 dark:border-white/10 dark:bg-[#1b1b1d] dark:text-white",
+                    className
+                )}
+            >
+                {isDark ? (
+                    <span className="text-lg font-semibold leading-none">L</span>
+                ) : (
+                    <svg
+                        viewBox="0 0 24 24"
+                        className="h-6 w-6 text-zinc-900 dark:text-white"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="1.5"
+                    >
+                        <path
+                            d="M21 12.79A9 9 0 0 1 11.21 3 7 7 0 1 0 21 12.79Z"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                        />
+                    </svg>
+                )}
+            </Button>
+            {overlay}
+        </>
+    );
 }

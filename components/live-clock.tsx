@@ -24,11 +24,9 @@ export function LiveClock() {
     hour12: true,
   });
 
-  const formatted = `${date.toUpperCase()} — ${time}`;
-
   return (
-    <time className="font-mono text-[11px] font-light uppercase tracking-[0.45em] text-zinc-500 dark:text-zinc-400">
-      {formatted}
+    <time className="font-mono text-[11px] uppercase tracking-[0.45em] text-white/60">
+      {`${date.toUpperCase()} — ${time}`}
     </time>
   );
 }

@@ -1,242 +1,223 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { BentoCard, BentoGrid } from "@/components/bento-grid";
 import { DailyToolStack } from "@/components/daily-tool-stack";
 import { LiveClock } from "@/components/live-clock";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { cn } from "@/lib/utils";
 
-const stackSections = [
-  {
-    title: "Focus Areas",
-    items: ["Product", "Design", "Motion"],
-  },
-  {
-    title: "Featured",
-    items: ["React", "Next.js", "TypeScript", "Tailwind", "Framer Motion"],
-  },
-  {
-    title: "Backend",
-    items: ["Node.js", "tRPC", "Prisma", "PlanetScale"],
-  },
-  {
-    title: "DB + Services",
-    items: ["Supabase", "Vercel", "Clerk", "Resend"],
-  },
-  {
-    title: "Currently Learning",
-    items: ["Three.js", "Motion Graphics"],
-  },
-];
+const stack = {
+  frontend: ["Framer-Motion", "Recoil", "Tanstack Query"],
+  backend: ["Nodejs", "Honojs", "Expressjs", "NPM"],
+  services: [
+    "Cloudflare Workers",
+    "Docker",
+    "Appwrite",
+    "Supabase",
+    "Prisma ORM",
+    "Postman",
+    "Postgres",
+    "MongoDB",
+  ],
+  learning: ["Rust"],
+};
 
 const tools = [
-  { name: "VS CODE", icon: "/images/vscode.png" },
-  { name: "FIGMA", icon: "/images/figma_logo.svg" },
-  { name: "FRAMER", icon: "/images/motion.svg" },
-  { name: "JETBRAINS", icon: "/images/jetbrains.svg" },
-  { name: "CHATGPT", icon: "/images/chatgpt.svg" },
-  { name: "T3 STACK", icon: "/images/t3.svg" },
+  { name: "VS Code", icon: "/images/vscode.png" },
+  { name: "Figma", icon: "/images/figma_logo.svg" },
+  { name: "Framer", icon: "/images/motion.svg" },
+  { name: "V0", icon: "/images/v0.svg" },
+  { name: "Discord", icon: "/images/discord.svg" },
+  { name: "ChatGPT", icon: "/images/chatgpt.svg" },
 ];
 
-const socials = [
-  { name: "GitHub", href: "https://github.com/zygyxl", icon: "/images/github.svg" },
-  { name: "X", href: "https://x.com", icon: "/images/x.svg" },
-  { name: "LinkedIn", href: "https://www.linkedin.com", icon: "/images/linkdin.svg" },
-  { name: "Mail", href: "mailto:hello@yzy.dev", icon: "/images/gmail.svg" },
-  { name: "Discord", href: "https://discord.gg", icon: "/images/discord.svg" },
-  { name: "Framer", href: "https://www.framer.com", icon: "/images/motion.svg" },
+const links = [
+  { name: "GitHub", href: "https://github.com/opzywl", icon: "/images/github.svg" },
+  { name: "X", href: "https://x.com/opzywl", icon: "/images/x.svg" },
+  { name: "Gmail", href: "mailto:contact@zywl.dev", icon: "/images/gmail.svg" },
+  { name: "LinkedIn", href: "https://linkedin.com", icon: "/images/linkdin.svg" },
 ];
 
-const vibeShots = [
-  { src: "/images/ye.jpg", alt: "Ye" },
-  { src: "/images/image_2.jpg", alt: "Ghost Town" },
-  { src: "/images/shawn.png", alt: "Shawn" },
-  { src: "/images/naruto24.jpg", alt: "Naruto" },
-];
+const techPill =
+  "rounded-full border border-white/10 bg-[#111115] px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.3em] text-white/70 shadow-[0_30px_80px_-65px_rgba(0,0,0,0.65)]";
+const cardBase =
+  "relative rounded-[36px] border border-white/10 bg-[#0d0d11]/95 p-9 text-white shadow-[0_80px_160px_-90px_rgba(0,0,0,0.9)]";
 
 export default function Page() {
   return (
-    <main className="relative mx-auto flex min-h-screen w-full max-w-[1200px] flex-col gap-14 px-6 py-16 sm:px-10 lg:gap-16">
-      <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
-        <div className="absolute inset-0 bg-[#f6f6fb] opacity-100 transition-opacity duration-700 dark:opacity-0" />
-        <div className="absolute inset-0 bg-[#050507] opacity-0 transition-opacity duration-700 dark:opacity-100" />
-        <div className="absolute -left-32 top-24 h-[360px] w-[360px] rounded-[80px] bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.18),transparent_75%)] opacity-40 transition-opacity duration-700 dark:opacity-70" />
-        <div className="absolute -right-36 bottom-10 h-[420px] w-[420px] rounded-[120px] bg-[radial-gradient(circle_at_center,_rgba(122,110,255,0.18),transparent_70%)] opacity-40 transition-opacity duration-700 dark:opacity-70" />
-      </div>
+    <main className="min-h-screen w-full bg-[#050506] px-6 py-16 sm:px-12">
+      <div className="mx-auto flex w-full max-w-[1180px] flex-col gap-12">
+        <div className="grid gap-8 lg:grid-cols-[320px,minmax(0,420px),260px]">
+          <section className={cn(cardBase, "flex flex-col gap-10")}> 
+            <header className="space-y-5">
+              <span className="inline-flex h-10 w-10 items-center justify-center rounded-2xl border border-white/10 bg-[#151519] text-sm font-semibold text-white/70">
+                {"{}"}
+              </span>
+              <h2 className="text-[48px] font-semibold uppercase leading-none tracking-[0.28em] text-white">
+                TECH
+                <br />
+                STACK
+              </h2>
+            </header>
 
-      <header className="flex flex-wrap items-center justify-between gap-4">
-        <div className="flex items-center gap-4 text-[11px] uppercase tracking-[0.45em] text-zinc-500 dark:text-zinc-500">
-          <span className="rounded-full border border-black/10 px-3 py-1 text-[10px] text-zinc-600 shadow-[0_20px_70px_-45px_rgba(15,23,42,0.55)] dark:border-white/10 dark:text-white/70">
-            {}
-          </span>
-          <span>tech stack dashboard</span>
-        </div>
-        <div className="flex items-center gap-4">
-          <LiveClock />
-          <ThemeToggle />
-        </div>
-      </header>
-
-      <BentoGrid className="gap-8 lg:grid-cols-[340px,minmax(0,1fr),280px]">
-        <div className="flex flex-col gap-8">
-          <BentoCard delay={0.05} className="min-h-[760px] px-9 py-10">
-            <div className="flex h-full flex-col">
-              <div className="space-y-6">
-                <div className="flex items-center gap-3 text-[11px] uppercase tracking-[0.55em] text-zinc-500 dark:text-white/60">
-                  <span className="rounded-full border border-black/10 px-3 py-1 text-[10px] text-zinc-600 shadow-[0_24px_80px_-50px_rgba(15,23,42,0.5)] dark:border-white/10 dark:text-white/70">
-                    {}
-                  </span>
-                  <span>tech stack</span>
+            <div className="space-y-6 text-[12px] uppercase tracking-[0.35em] text-white/50">
+              <div className="space-y-3">
+                <p>Tech stack</p>
+                <div className="flex flex-wrap gap-2.5">
+                  {stack.frontend.map((item) => (
+                    <span key={item} className={techPill}>
+                      {item}
+                    </span>
+                  ))}
                 </div>
-                <h2 className="text-[40px] font-semibold tracking-[0.35em] text-zinc-900 dark:text-white">{`{}`} TECH STACK</h2>
-                <p className="max-w-[260px] text-sm leading-6 text-zinc-600 dark:text-zinc-400">
-                  Frontend, backend e serviços que utilizo diariamente para construir experiências digitais ricas em motion.
-                </p>
               </div>
-              <div className="mt-12 flex-1 space-y-8">
-                {stackSections.map((section) => (
-                  <div key={section.title} className="space-y-4">
-                    <div className="flex items-center justify-between text-[10px] uppercase tracking-[0.55em] text-zinc-500 dark:text-white/60">
-                      <span>{section.title}</span>
-                      <span className="h-px w-[60px] bg-zinc-300/40 dark:bg-white/10" />
-                    </div>
-                    <div className="flex flex-wrap gap-2.5">
-                      {section.items.map((item) => (
-                        <span
-                          key={item}
-                          className="rounded-full border border-black/10 bg-white/85 px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-[0.3em] text-zinc-800 shadow-[0_34px_90px_-60px_rgba(15,23,42,0.55)] dark:border-white/10 dark:bg-white/5 dark:text-white"
-                        >
-                          {item}
-                        </span>
-                      ))}
-                    </div>
+
+              <div className="space-y-3">
+                <p>Backend</p>
+                <div className="flex flex-wrap gap-2.5">
+                  {stack.backend.map((item) => (
+                    <span key={item} className={techPill}>
+                      {item}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <div className="space-y-3">
+                <p>Db &amp; Services</p>
+                <div className="flex flex-wrap gap-2.5">
+                  {stack.services.map((item) => (
+                    <span key={item} className={techPill}>
+                      {item}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <div className="space-y-3">
+                <p>Currently learning</p>
+                <div className="flex flex-wrap gap-2.5">
+                  {stack.learning.map((item) => (
+                    <span key={item} className={techPill}>
+                      {item}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <div className="flex flex-col gap-8">
+            <section className={cn(cardBase, "flex flex-col gap-8 bg-[#0f0f13]/95")}> 
+              <div className="flex items-start justify-between">
+                <div className="flex items-center gap-5">
+                  <div className="relative h-20 w-20 overflow-hidden rounded-[26px] border border-white/10">
+                    <Image src="/images/profile.jpg" alt="Zywl" fill sizes="80px" className="object-cover" priority />
                   </div>
-                ))}
-              </div>
-              <div className="mt-auto pt-10 text-[10px] uppercase tracking-[0.55em] text-zinc-500 dark:text-white/60">
-                Product • Motion • Recall
-              </div>
-            </div>
-          </BentoCard>
-        </div>
-
-        <div className="flex flex-col gap-8">
-          <BentoCard delay={0.12} className="px-9 py-9">
-            <div className="flex h-full flex-col gap-7">
-              <div className="flex items-center gap-6">
-                <div className="relative h-20 w-20 overflow-hidden rounded-[28px] border border-black/10 bg-white/80 shadow-[0_30px_90px_-60px_rgba(15,23,42,0.45)] dark:border-white/10 dark:bg-white/10">
-                  <Image src="/images/profile.jpg" alt="Retrato de Zywil" fill sizes="80px" className="object-cover" priority />
+                  <div className="space-y-1">
+                    <span className="text-[11px] uppercase tracking-[0.45em] text-white/40">opzywl</span>
+                    <h3 className="text-[32px] font-semibold tracking-[0.08em] text-white">Zywl</h3>
+                    <p className="text-[12px] uppercase tracking-[0.6em] text-white/35">I build WebApps .</p>
+                  </div>
                 </div>
+                <span className="text-xl text-white/40">夜</span>
+              </div>
+
+              <div className="space-y-4 text-[15px] leading-7 text-white/70">
+                <p>Hello, I&rsquo;m Zywl. a 21 year old developer based in SP - Brazil.</p>
+                <p>Focused on motion-first experiences inside Next.js + Typescript + React.</p>
+              </div>
+
+              <div className="space-y-4 rounded-[28px] border border-white/10 bg-[#13131a] p-5 text-[13px] leading-relaxed text-white/60">
+                <p className="italic">&ldquo;How do i center a div again??&rdquo;</p>
+                <div className="flex items-center justify-between text-[11px] uppercase tracking-[0.4em]">
+                  <div className="flex items-center gap-3">
+                    <span className="h-2.5 w-2.5 rounded-full bg-emerald-400" />
+                    <span>Available for work</span>
+                  </div>
+                  <span>28/09/2025, 15:47:24</span>
+                </div>
+              </div>
+            </section>
+
+            <section className={cn(cardBase, "bg-[#0f0f13]/95 p-7")}> 
+              <DailyToolStack tools={tools} />
+            </section>
+          </div>
+
+          <div className="flex flex-col gap-8">
+            <section className={cn(cardBase, "flex flex-col gap-6 bg-[#0f0f13]/95 p-7")}> 
+              <header className="flex items-start justify-between">
                 <div className="space-y-1">
-                  <span className="text-[11px] uppercase tracking-[0.45em] text-zinc-500 dark:text-white/60">@zywil</span>
-                  <h3 className="text-[30px] font-semibold text-zinc-900 dark:text-white">Zywil</h3>
-                  <p className="text-[11px] uppercase tracking-[0.6em] text-zinc-500 dark:text-white/40">I build webapps.</p>
+                  <p className="text-[11px] uppercase tracking-[0.5em] text-white/40">Quick links</p>
+                  <h4 className="text-[36px] font-semibold tracking-[0.25em] text-white">LINKS.</h4>
                 </div>
-              </div>
-              <div className="space-y-4 text-sm leading-6 text-zinc-600 dark:text-zinc-300">
-                <p>
-                  Hello, I&rsquo;m Zywil — a 21 year old developer based in São Paulo, Brasil crafting motion-first product
-                  experiences with TypeScript, design systems and audiovisual storytelling.
-                </p>
-                <p>Product driven. Systems minded. Motion always.</p>
-              </div>
-              <div className="mt-auto flex items-center justify-between rounded-[28px] border border-black/10 bg-white/85 px-5 py-4 text-[11px] uppercase tracking-[0.45em] text-zinc-700 shadow-[0_38px_90px_-65px_rgba(15,23,42,0.5)] dark:border-white/10 dark:bg-white/5 dark:text-white/70">
-                <div className="flex items-center gap-3">
-                  <span className="h-2.5 w-2.5 rounded-full bg-emerald-400" />
-                  <span>Available for work</span>
+                <div className="flex gap-2 text-xs font-semibold uppercase tracking-[0.4em] text-white/30">
+                  <span className="flex h-8 w-8 items-center justify-center rounded-2xl border border-white/10">X</span>
+                  <span className="flex h-8 w-8 items-center justify-center rounded-2xl border border-white/10">O</span>
+                  <span className="flex h-8 w-8 items-center justify-center rounded-2xl border border-white/10">.</span>
                 </div>
-                <span>Based in SP</span>
-              </div>
-            </div>
-          </BentoCard>
-
-          <BentoCard delay={0.18} className="px-9 py-9">
-            <DailyToolStack tools={tools} />
-          </BentoCard>
-        </div>
-
-        <div className="flex flex-col gap-8">
-          <BentoCard delay={0.16} className="px-8 py-8">
-            <div className="flex h-full flex-col gap-6">
-              <div className="flex items-start justify-between gap-4">
-                <div className="space-y-1">
-                  <p className="text-[10px] uppercase tracking-[0.55em] text-zinc-500 dark:text-white/60">Quick access</p>
-                  <h3 className="text-[36px] font-semibold leading-none tracking-[0.22em] text-zinc-900 dark:text-white">LINKS.</h3>
-                </div>
-                <div className="flex flex-col items-end gap-1">
-                  <span className="flex h-7 w-7 items-center justify-center rounded-xl border border-black/10 bg-white/75 text-xs font-semibold tracking-[0.3em] text-zinc-700 shadow-[0_24px_70px_-55px_rgba(15,23,42,0.55)] dark:border-white/10 dark:bg-white/10 dark:text-white">X</span>
-                  <span className="flex h-7 w-7 items-center justify-center rounded-xl border border-black/10 bg-white/75 text-xs font-semibold tracking-[0.3em] text-zinc-700 shadow-[0_24px_70px_-55px_rgba(15,23,42,0.55)] dark:border-white/10 dark:bg-white/10 dark:text-white">O</span>
-                  <span className="flex h-7 w-7 items-center justify-center rounded-xl border border-black/10 bg-white/75 text-xs font-semibold tracking-[0.3em] text-zinc-700 shadow-[0_24px_70px_-55px_rgba(15,23,42,0.55)] dark:border-white/10 dark:bg-white/10 dark:text-white">.</span>
-                </div>
-              </div>
-              <div className="grid grid-cols-3 gap-3">
-                {socials.map((social) => (
+              </header>
+              <div className="grid grid-cols-2 gap-3">
+                {links.map((item) => (
                   <Link
-                    key={social.name}
-                    href={social.href}
-                    className="group flex h-[76px] w-full items-center justify-center rounded-[24px] border border-black/10 bg-white/85 p-3 shadow-[0_32px_80px_-60px_rgba(15,23,42,0.55)] transition-all duration-200 hover:-translate-y-1 hover:shadow-[0_38px_90px_-55px_rgba(15,23,42,0.55)] dark:border-white/10 dark:bg-white/5"
+                    key={item.name}
+                    href={item.href}
                     target="_blank"
                     rel="noreferrer"
+                    className="flex h-[72px] items-center justify-center rounded-[22px] border border-white/10 bg-[#14141b] transition-transform duration-200 hover:-translate-y-1"
                   >
-                    <Image src={social.icon} alt={social.name} width={26} height={26} className="object-contain" />
+                    <Image src={item.icon} alt={item.name} width={28} height={28} />
                   </Link>
                 ))}
               </div>
-            </div>
-          </BentoCard>
+            </section>
 
-          <BentoCard
-            delay={0.23}
-            className="relative overflow-hidden border-none bg-[#d5c7ff] px-8 py-9 text-[#19161f] shadow-[0_70px_160px_-90px_rgba(139,115,255,0.85)] dark:bg-gradient-to-br dark:from-[#b18aff] dark:via-[#8e7eff] dark:to-[#6b9dff] dark:text-white"
-          >
-            <div className="pointer-events-none absolute inset-0 opacity-40">
-              <Image src="/images/v0.svg" alt="Projeto" fill sizes="(min-width: 1024px) 280px, 80vw" className="object-cover" />
-            </div>
-            <div className="relative z-10 flex h-full flex-col justify-between">
+            <section className={cn(cardBase, "flex h-full flex-col justify-between overflow-hidden bg-gradient-to-br from-[#b987ff] via-[#a26bff] to-[#845cff] p-8 text-[#1d1426]")}> 
               <div className="space-y-3">
-                <p className="text-[10px] uppercase tracking-[0.55em] text-black/60 dark:text-white/70">Project</p>
-                <h3 className="text-[46px] font-semibold tracking-[0.3em] leading-[0.95]">
-                  SSS
-                  <br />
-                  NZ
-                </h3>
-                <p className="max-w-[220px] text-sm text-black/70 dark:text-white/80">
-                  Motion experiments mixing shadcn/ui components, playful UI cards and micro-interactions.
+                <p className="text-[11px] uppercase tracking-[0.5em] text-black/40">Project</p>
+                <div className="flex items-center gap-3 text-black/80">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    className="h-9 w-9"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.4"
+                  >
+                    <path
+                      d="M12 2v5m0 10v5m-4-4h8m-8-12h8m1-2h2a2 2 0 0 1 2 2v3m0 6v3a2 2 0 0 1-2 2h-2m-10 0H5a2 2 0 0 1-2-2v-3m0-6V7a2 2 0 0 1 2-2h2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                  <h5 className="text-[32px] font-semibold tracking-[0.2em]">PROJECT SSS</h5>
+                </div>
+                <p className="max-w-[180px] text-[13px] leading-6 text-black/65">
+                  工芸 — Experimentos com motion e UI frameworks.
                 </p>
               </div>
-              <div className="flex items-center justify-between text-sm font-medium">
-                <span>Prototyping now</span>
-                <Image src="/images/play.svg" alt="Play" width={30} height={30} />
+              <div className="flex items-center justify-between text-[13px] font-medium text-black/70">
+                <span>view case</span>
+                <Image src="/images/play.svg" alt="Abrir" width={34} height={34} />
               </div>
-            </div>
-          </BentoCard>
-
-          <BentoCard delay={0.28} className="px-8 py-8">
-            <div className="flex h-full flex-col gap-6">
-              <header className="flex items-center justify-between">
-                <div className="space-y-1">
-                  <p className="text-[10px] uppercase tracking-[0.55em] text-zinc-500 dark:text-white/60">Daily vibe</p>
-                  <h4 className="text-[26px] font-semibold tracking-[0.18em] text-zinc-900 dark:text-white">MOOD BOARD</h4>
-                </div>
-                <Image src="/images/elipse.svg" alt="Ellipse" width={36} height={36} className="opacity-80 dark:opacity-70" />
-              </header>
-              <div className="grid grid-cols-2 gap-3">
-                {vibeShots.map((shot) => (
-                  <div
-                    key={shot.src}
-                    className="relative aspect-square overflow-hidden rounded-[24px] border border-black/10 bg-white/85 shadow-[0_30px_80px_-60px_rgba(15,23,42,0.55)] dark:border-white/10 dark:bg-white/5"
-                  >
-                    <Image src={shot.src} alt={shot.alt} fill sizes="(min-width: 1024px) 120px, 40vw" className="object-cover" />
-                  </div>
-                ))}
-              </div>
-              <p className="text-xs leading-5 text-zinc-600 dark:text-zinc-300">
-                Anime, hip-hop e sci-fi alimentam a energia do estúdio diariamente.
-              </p>
-            </div>
-          </BentoCard>
+            </section>
+          </div>
         </div>
-      </BentoGrid>
+
+        <footer className="flex items-center justify-between rounded-[28px] border border-white/10 bg-[#08080b] px-8 py-5 text-[11px] uppercase tracking-[0.45em] text-white/40">
+          <div className="flex items-center gap-3">
+            <span className="flex h-8 w-14 items-center justify-center rounded-2xl border border-white/10 bg-[#0f0f13]/90 text-xs text-white/50">
+              <span className="h-1 w-8 rounded-full bg-white/20" />
+            </span>
+            <span>Tech Stack Dashboard</span>
+          </div>
+          <div className="flex items-center gap-5 text-white/50">
+            <LiveClock />
+            <ThemeToggle className="h-12 w-12 rounded-2xl border border-white/10 bg-[#111117] text-white" />
+          </div>
+        </footer>
+      </div>
     </main>
   );
 }
