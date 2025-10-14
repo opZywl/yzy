@@ -14,10 +14,13 @@ type NasaApod = {
   copyright?: string;
 };
 
-export function NasaCard({ className }: { className?: string }) {
+const FALLBACK_IMAGE = "/images/solaranalemma2024.jpg";
+
+export function useNasaApod() {
   const [data, setData] = useState<NasaApod | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
+  const [broken, setBroken] = useState(false);
 
   useEffect(() => {
     let ignore = false;
@@ -45,17 +48,24 @@ export function NasaCard({ className }: { className?: string }) {
     };
   }, []);
 
-  const fallbackImage = "/images/solaranalemma2024.jpg";
-  const imageSrc = error
-    ? fallbackImage
+  const imageSrc = error || broken
+    ? FALLBACK_IMAGE
     : data?.media_type === "image"
-    ? data?.hdurl || data?.url || fallbackImage
-    : fallbackImage;
+    ? data?.hdurl || data?.url || FALLBACK_IMAGE
+    : FALLBACK_IMAGE;
+
+  const markAsBroken = () => setBroken(true);
+
+  return { data, isLoading, error: error || broken, imageSrc, markAsBroken };
+}
+
+export function NasaCard({ className }: { className?: string }) {
+  const { data, isLoading, error, imageSrc, markAsBroken } = useNasaApod();
 
   return (
     <div
       className={cn(
-        "flex h-full flex-col gap-4",
+        "flex h-full flex-col gap-5",
         className
       )}
     >
@@ -71,7 +81,7 @@ export function NasaCard({ className }: { className?: string }) {
           {isLoading ? "loading" : "synced"}
         </span>
       </header>
-      <div className="relative flex-1 overflow-hidden rounded-[24px] border border-black/10 bg-black/10 dark:border-white/10 dark:bg-white/5">
+      <div className="relative flex-1 overflow-hidden rounded-[28px] border border-black/10 bg-zinc-900/20 dark:border-white/10 dark:bg-white/5">
         {isLoading ? (
           <div className="flex h-full flex-col items-center justify-center gap-2 text-xs uppercase tracking-[0.3em] text-zinc-500 dark:text-zinc-400">
             <span>carregando</span>
@@ -84,7 +94,7 @@ export function NasaCard({ className }: { className?: string }) {
             fill
             sizes="(min-width: 1024px) 360px, 90vw"
             className="object-cover"
-            onError={() => setError(true)}
+            onError={markAsBroken}
             priority={false}
           />
         )}
@@ -97,7 +107,7 @@ export function NasaCard({ className }: { className?: string }) {
           </p>
         </div>
       </div>
-      <div className="flex items-center justify-between rounded-2xl border border-black/10 bg-white/70 px-4 py-3 text-xs text-zinc-700 shadow-[0_10px_30px_-20px_rgba(15,23,42,0.35)] dark:border-white/10 dark:bg-white/5 dark:text-zinc-300">
+      <div className="flex items-center justify-between rounded-2xl border border-black/10 bg-white/80 px-4 py-4 text-xs text-zinc-700 shadow-[0_24px_60px_-40px_rgba(15,23,42,0.35)] dark:border-white/10 dark:bg-white/5 dark:text-zinc-300">
         <div className="space-y-1">
           <p className="text-[11px] uppercase tracking-[0.35em] text-zinc-500 dark:text-zinc-400">Playlist</p>
           <p className="text-sm font-semibold text-zinc-800 dark:text-white">"The game be bleak one day"</p>

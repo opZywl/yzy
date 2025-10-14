@@ -30,9 +30,13 @@ export function ThemeToggle({ className }: { className?: string }) {
         size="icon"
         variant="ghost"
         aria-label="Toggle theme"
-        className={cn("rounded-full bg-transparent", className)}
+        className={cn(
+          "rounded-2xl border border-black/10 bg-white/80 text-zinc-900",
+          "dark:border-white/10 dark:bg-[#1b1b1d] dark:text-white",
+          className
+        )}
       >
-        <span className="text-xs font-bold text-white">夜</span>
+        <span className="text-lg font-semibold leading-none">L</span>
       </Button>
     );
   }
@@ -84,21 +88,14 @@ export function ThemeToggle({ className }: { className?: string }) {
         aria-label="Alternar tema"
         onClick={handleToggle}
         className={cn(
-          "relative h-12 w-12 overflow-hidden rounded-2xl border border-black/10 bg-white/70 text-zinc-900 shadow-[0_10px_40px_-20px_rgba(15,23,42,0.45)] transition",
-          "hover:border-black/20 dark:border-white/10 dark:bg-[#1c1c1f] dark:text-white",
+          "relative h-12 w-12 overflow-hidden rounded-2xl border border-black/10 bg-white/80 text-zinc-900 shadow-[0_30px_70px_-40px_rgba(15,23,42,0.4)] transition",
+          "hover:border-black/20 dark:border-white/10 dark:bg-[#1b1b1d] dark:text-white",
           className
         )}
       >
         {mounted && (
           isDark ? (
-            <Image
-              src="/images/dia.svg"
-              alt="Modo claro"
-              width={26}
-              height={26}
-              className="object-contain"
-              priority
-            />
+            <span className="text-lg font-semibold leading-none">L</span>
           ) : (
             <svg
               viewBox="0 0 24 24"

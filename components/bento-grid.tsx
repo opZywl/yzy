@@ -1,7 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
-
 import { cn } from "@/lib/utils";
 
 export function BentoGrid({
@@ -33,11 +31,10 @@ export function BentoCard({
   background?: React.ReactNode;
 }) {
   return (
-    <motion.div
-      whileHover={{ scale: 1.02 }}
+    <div
       className={cn(
-        "group relative flex h-full w-full overflow-hidden rounded-[30px] border border-black/10 bg-white/70 p-6 text-zinc-900 shadow-[0_20px_60px_-30px_rgba(15,23,42,0.35)] backdrop-blur-xl transition-all duration-300",
-        "dark:border-white/5 dark:bg-[#141416] dark:text-white",
+        "group relative flex h-full w-full overflow-hidden rounded-[34px] border border-black/5 bg-white/80 px-7 py-7 text-zinc-900 shadow-[0_45px_120px_-65px_rgba(15,23,42,0.55)] backdrop-blur-[22px] transition-colors duration-500",
+        "dark:border-white/10 dark:bg-[#111113]/85 dark:text-white dark:shadow-[0_70px_160px_-90px_rgba(0,0,0,0.95)]",
         className
       )}
     >
@@ -47,6 +44,6 @@ export function BentoCard({
         </div>
       )}
       <div className="relative z-10 h-full w-full">{children}</div>
-    </motion.div>
+    </div>
   );
 }

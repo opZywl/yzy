@@ -13,20 +13,21 @@ export function LiveClock() {
 
   if (!now) return null;
 
-  const formatted = `${now.toLocaleDateString("pt-BR", {
+  const date = now.toLocaleDateString("en-US", {
+    month: "long",
     day: "2-digit",
-    month: "2-digit",
     year: "numeric",
-  })}, ${now.toLocaleTimeString("pt-BR", {
+  });
+  const time = now.toLocaleTimeString("en-US", {
     hour: "2-digit",
     minute: "2-digit",
-    second: "2-digit",
-    hour12: false,
-    hourCycle: "h23",
-  })}`;
+    hour12: true,
+  });
+
+  const formatted = `${date.toUpperCase()} — ${time}`;
 
   return (
-    <time className="font-mono text-[10px] font-light uppercase tracking-[0.35em] text-zinc-500 dark:text-zinc-400">
+    <time className="font-mono text-[11px] font-light uppercase tracking-[0.45em] text-zinc-500 dark:text-zinc-400">
       {formatted}
     </time>
   );
