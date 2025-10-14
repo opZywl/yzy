@@ -26,7 +26,7 @@ export function LiveClock() {
   })}`;
 
   return (
-    <time className="font-mono text-[10px] font-light tracking-widest text-zinc-400">
+    <time className="font-mono text-[10px] font-light uppercase tracking-[0.35em] text-zinc-500 dark:text-zinc-400">
       {formatted}
     </time>
   );

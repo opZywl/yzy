@@ -1,12 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import {
-  motion,
-  useMotionValue,
-  useSpring,
-  useTransform,
-} from "framer-motion";
+import { motion } from "framer-motion";
 
 import { cn } from "@/lib/utils";
 
@@ -18,23 +12,15 @@ export function BentoGrid({
   children: React.ReactNode;
 }) {
   return (
-    <div className={cn("grid w-full grid-cols-3 gap-3 max-md:grid-cols-1", className)}>
+    <div
+      className={cn(
+        "grid w-full gap-6 sm:grid-cols-2 lg:grid-cols-3",
+        className
+      )}
+    >
       {children}
     </div>
   );
-}
-
-function useIsMobile() {
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const update = () => setIsMobile(window.innerWidth < 768);
-    update();
-    window.addEventListener("resize", update);
-    return () => window.removeEventListener("resize", update);
-  }, []);
-
-  return isMobile;
 }
 
 export function BentoCard({
@@ -46,43 +32,12 @@ export function BentoCard({
   children: React.ReactNode;
   background?: React.ReactNode;
 }) {
-  const isMobile = useIsMobile();
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-  const springX = useSpring(x, { stiffness: 900, damping: 80, mass: 0.5 });
-  const springY = useSpring(y, { stiffness: 900, damping: 80, mass: 0.5 });
-  const scale = useTransform([springX, springY], ([latestX, latestY]) => {
-    const distance = Math.sqrt(latestX ** 2 + latestY ** 2);
-    return 1 - Math.min(distance / 3500, 0.08);
-  });
-
-  useEffect(() => {
-    if (isMobile) {
-      x.set(0);
-      y.set(0);
-    }
-  }, [isMobile, x, y]);
-
   return (
     <motion.div
-      drag={!isMobile}
-      dragConstraints={{ left: -24, right: 24, top: -24, bottom: 24 }}
-      dragElastic={0.2}
-      dragMomentum={false}
-      onDrag={(_, info) => {
-        if (isMobile) return;
-        x.set(info.offset.x);
-        y.set(info.offset.y);
-      }}
-      onDragEnd={() => {
-        x.set(0);
-        y.set(0);
-      }}
-      style={{ x: springX, y: springY, scale }}
-      whileHover={{ scale: isMobile ? 1 : 1.03 }}
+      whileHover={{ scale: 1.02 }}
       className={cn(
-        "group relative flex h-full w-full overflow-hidden rounded-3xl border border-white/5 bg-dark-2/80 p-5 text-white shadow-[0_0_60px_-20px_rgba(255,255,255,0.2)_inset] backdrop-blur-lg transition-all hover:border-white/10",
-        "dark:bg-dark-2/80",
+        "group relative flex h-full w-full overflow-hidden rounded-[30px] border border-black/10 bg-white/70 p-6 text-zinc-900 shadow-[0_20px_60px_-30px_rgba(15,23,42,0.35)] backdrop-blur-xl transition-all duration-300",
+        "dark:border-white/5 dark:bg-[#141416] dark:text-white",
         className
       )}
     >

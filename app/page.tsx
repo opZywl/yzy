@@ -4,21 +4,26 @@ import Link from "next/link";
 import { BentoCard, BentoGrid } from "@/components/bento-grid";
 import { LiveClock } from "@/components/live-clock";
 import { NasaCard } from "@/components/nasa-card";
-import { TextMorph } from "@/components/text-morph";
 import { ThemeToggle } from "@/components/theme-toggle";
 
-const heroTexts = [
-  "I build WebApps.",
-  "Hello, I'm a full-stack developer based on TypeScript stack.",
-  "Design first. Motion always.",
+const stackSections = [
+  {
+    title: "Frontend",
+    items: ["React", "Next.js", "TypeScript", "Tailwind", "Framer Motion"],
+  },
+  {
+    title: "Backend",
+    items: ["Node.js", "tRPC", "Prisma", "PlanetScale"],
+  },
+  {
+    title: "DB & Services",
+    items: ["Supabase", "Vercel", "Clerk", "Resend"],
+  },
+  {
+    title: "Currently Learning",
+    items: ["Three.js", "Motion Graphics"],
+  },
 ];
-
-const techStack = {
-  frontend: ["React", "Next.js", "TypeScript", "Tailwind", "Shadcn UI"],
-  backend: ["Node.js", "tRPC", "Prisma", "PlanetScale"],
-  services: ["Supabase", "Vercel", "Clerk", "Resend"],
-  learning: ["Three.js", "Motion Graphics"],
-};
 
 const tools = [
   { name: "VS Code", icon: "/images/vscode.png" },
@@ -37,37 +42,53 @@ const socials = [
   { name: "X", href: "https://x.com", icon: "/images/x.svg" },
 ];
 
-const featuredProjects = [
-  {
-    title: "Project SSS",
-    description: "Framer Motion experiments and shadcn/ui components.",
-    cover: "/images/v0.svg",
-    badge: "/images/play.svg",
-  },
-  {
-    title: "V0 playground",
-    description: "Rapid prototyping with V0 and Tailwind CSS.",
-    cover: "/images/favicon.png",
-    badge: "/images/favicon.ico",
-  },
-];
-
-const vibeBoard = [
-  { src: "/images/ye.jpg", alt: "Kanye" },
+const vibeShots = [
+  { src: "/images/ye.jpg", alt: "Ye" },
   { src: "/images/shawn.png", alt: "Shawn" },
-  { src: "/images/image_2.jpg", alt: "Mountains" },
   { src: "/images/naruto631.jpg", alt: "Naruto" },
-  { src: "/images/naruto24.jpg", alt: "Naruto 24" },
-  { src: "/images/theL.gif", alt: "L" },
+  { src: "/images/image_2.jpg", alt: "Mountains" },
 ];
 
 export default function Page() {
   return (
-    <main className="mx-auto flex min-h-screen w-full max-w-6xl flex-col gap-6 px-6 py-10">
-      <header className="flex items-center justify-between">
-        <div className="flex items-center gap-3 text-xs uppercase tracking-[0.4em] text-zinc-500">
-          <span>{"{}"}</span>
-          <span>Portfolio Bento</span>
+    <main className="relative mx-auto flex min-h-screen w-full max-w-[1120px] flex-col gap-10 px-6 py-12 sm:px-10 lg:gap-12 lg:py-16">
+      <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+        <div className="absolute inset-0 bg-[#070709] opacity-0 transition-opacity duration-700 dark:opacity-100" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(103,76,255,0.28),transparent_60%)] opacity-0 transition-opacity duration-700 dark:opacity-80" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0f111a] to-[#040408] opacity-0 transition-opacity duration-700 dark:opacity-90" />
+        <div className="absolute inset-0 bg-gradient-to-br from-[#f4f7ff] via-[#dfe9ff] to-[#f4f7ff] opacity-100 transition-opacity duration-700 dark:opacity-0" />
+        <Image
+          src="/images/cloud688.png"
+          alt="Clouds"
+          width={900}
+          height={600}
+          className="absolute left-1/2 top-[10%] w-[900px] -translate-x-1/2 opacity-100 transition-opacity duration-700 dark:opacity-0"
+          priority
+        />
+        <Image
+          src="/images/cloud.png"
+          alt="Cloud"
+          width={300}
+          height={180}
+          className="absolute left-0 top-[25%] opacity-100 transition-opacity duration-700 dark:opacity-0"
+          priority
+        />
+        <Image
+          src="/images/bigCloud.png"
+          alt="Big cloud"
+          width={420}
+          height={320}
+          className="absolute right-[-60px] bottom-[8%] opacity-100 transition-opacity duration-700 dark:opacity-0"
+          priority
+        />
+      </div>
+
+      <header className="flex flex-wrap items-center justify-between gap-4">
+        <div className="flex items-center gap-3 text-[11px] uppercase tracking-[0.4em] text-zinc-500 dark:text-zinc-500">
+          <span className="rounded-full border border-black/10 px-3 py-1 text-[10px] text-zinc-600 shadow-[0_10px_25px_-20px_rgba(15,23,42,0.35)] dark:border-white/10 dark:text-zinc-300">
+            {}
+          </span>
+          <span>tech stack dashboard</span>
         </div>
         <div className="flex items-center gap-4">
           <LiveClock />
@@ -75,207 +96,181 @@ export default function Page() {
         </div>
       </header>
 
-      <BentoGrid className="auto-rows-[14rem]">
-        <BentoCard className="col-span-1 row-span-2 bg-dark-2/60">
-          <div className="flex h-full flex-col justify-between">
-            <div className="flex items-center gap-3">
-              <div className="relative h-14 w-14 overflow-hidden rounded-2xl border border-white/10">
-                <Image src="/images/profile.jpg" alt="profile" fill className="object-cover" />
+      <BentoGrid className="lg:grid-cols-[280px,1fr,240px]">
+        <div className="flex flex-col gap-6">
+          <BentoCard className="min-h-[620px]">
+            <div className="flex h-full flex-col">
+              <div className="space-y-4">
+                <p className="text-[11px] font-mono uppercase tracking-[0.45em] text-zinc-500 dark:text-zinc-400">
+                  Tech Stack
+                </p>
+                <h2 className="text-3xl font-semibold tracking-[0.35em] text-zinc-900 dark:text-white">
+                  {"{}"} TECH STACK
+                </h2>
+                <p className="max-w-[220px] text-sm leading-6 text-zinc-600 dark:text-zinc-400">
+                  Frontend, backend and services that make my daily toolkit.
+                </p>
               </div>
-              <div className="flex flex-col">
-                <span className="text-sm font-light text-zinc-400">@zygyxl</span>
-                <span className="text-lg font-semibold text-white">Zygyl</span>
-              </div>
-            </div>
-            <TextMorph texts={heroTexts} />
-            <div className="flex flex-wrap gap-2 text-[11px] text-zinc-400">
-              <span className="rounded-full border border-white/10 px-3 py-1 font-mono uppercase tracking-wide">
-                based in SP
-              </span>
-              <span className="rounded-full border border-white/10 px-3 py-1 font-mono uppercase tracking-wide">
-                available for freelance
-              </span>
-            </div>
-          </div>
-        </BentoCard>
-
-        <BentoCard className="col-span-1 row-span-3 bg-dark-2/70">
-          <div className="flex h-full flex-col gap-4">
-            <h2 className="font-mono text-sm uppercase tracking-[0.4em] text-zinc-400">Tech Stack</h2>
-            <section className="flex flex-1 flex-col justify-between gap-4">
-              <div>
-                <p className="text-xs uppercase text-zinc-500">Frontend</p>
-                <ul className="mt-2 space-y-1 text-sm text-white/90">
-                  {techStack.frontend.map((item) => (
-                    <li key={item} className="flex items-center gap-2">
-                      <Image src="/images/vscode32.png" alt="item" width={16} height={16} className="opacity-60" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div>
-                <p className="text-xs uppercase text-zinc-500">Backend</p>
-                <ul className="mt-2 space-y-1 text-sm text-white/90">
-                  {techStack.backend.map((item) => (
-                    <li key={item} className="flex items-center gap-2">
-                      <Image src="/images/jetbrains.svg" alt="item" width={18} height={18} className="opacity-60" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div>
-                <p className="text-xs uppercase text-zinc-500">DB & Services</p>
-                <ul className="mt-2 space-y-1 text-sm text-white/90">
-                  {techStack.services.map((item) => (
-                    <li key={item} className="flex items-center gap-2">
-                      <Image src="/images/chatgpt.svg" alt="item" width={16} height={16} className="opacity-60" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div>
-                <p className="text-xs uppercase text-zinc-500">Currently Learning</p>
-                <ul className="mt-2 space-y-1 text-sm text-white/90">
-                  {techStack.learning.map((item) => (
-                    <li key={item} className="flex items-center gap-2">
-                      <Image src="/images/motion.svg" alt="item" width={16} height={16} className="opacity-60" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </section>
-          </div>
-        </BentoCard>
-
-        <BentoCard className="col-span-1 row-span-2 bg-dark-2/70">
-          <div className="flex h-full flex-col gap-4">
-            <h2 className="text-sm font-semibold uppercase tracking-[0.4em] text-zinc-400">
-              Daily Tool Stack
-            </h2>
-            <div className="grid flex-1 grid-cols-3 gap-3">
-              {tools.map((tool) => (
-                <div
-                  key={tool.name}
-                  className="flex flex-col items-center gap-2 rounded-2xl border border-white/10 bg-white/5 p-3 text-center text-xs backdrop-blur"
-                >
-                  <div className="relative h-10 w-10">
-                    <Image src={tool.icon} alt={tool.name} fill className="object-contain" />
-                  </div>
-                  <span className="text-[11px] text-zinc-300">{tool.name}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </BentoCard>
-
-        <BentoCard className="col-span-1 row-span-3 bg-dark-2/70">
-          <NasaCard />
-        </BentoCard>
-
-        <BentoCard className="col-span-1 row-span-1 bg-gradient-to-br from-purple-600/60 via-purple-400/40 to-pink-400/40">
-          <div className="flex h-full flex-col justify-between">
-            <header className="flex items-center justify-between text-xs uppercase tracking-[0.4em] text-white/70">
-              <span>Links</span>
-              <Image src="/images/dia.svg" alt="dia" width={28} height={28} />
-            </header>
-            <div className="flex flex-wrap gap-3">
-              {socials.map((social) => (
-                <Link
-                  key={social.name}
-                  href={social.href}
-                  className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/20 bg-black/40 p-2 transition hover:border-white"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <Image src={social.icon} alt={social.name} width={28} height={28} className="object-contain" />
-                </Link>
-              ))}
-            </div>
-          </div>
-        </BentoCard>
-
-        <BentoCard className="col-span-1 row-span-2 bg-dark-2/80">
-          <div className="flex h-full flex-col gap-6">
-            <header className="flex items-center justify-between text-xs uppercase tracking-[0.4em] text-zinc-400">
-              <span>Projects</span>
-              <Image src="/images/v0.svg" alt="v0" width={32} height={32} />
-            </header>
-            <div className="space-y-4">
-              {featuredProjects.map((project) => {
-                const isIcon = project.badge.endsWith(".ico");
-
-                return (
-                  <div key={project.title} className="flex items-center gap-3">
-                    <div className="relative h-12 w-12 overflow-hidden rounded-2xl border border-white/10">
-                      <Image src={project.cover} alt={project.title} fill className="object-cover" />
+              <div className="mt-10 space-y-6">
+                {stackSections.map((section) => (
+                  <div key={section.title} className="space-y-3">
+                    <p className="text-[11px] uppercase tracking-[0.4em] text-zinc-500 dark:text-zinc-400">
+                      {section.title}
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      {section.items.map((item) => (
+                        <span
+                          key={item}
+                          className="rounded-full border border-black/10 bg-white/80 px-3 py-1 text-xs font-medium uppercase tracking-[0.2em] text-zinc-800 shadow-[0_14px_30px_-22px_rgba(15,23,42,0.45)] dark:border-white/10 dark:bg-white/10 dark:text-white"
+                        >
+                          {item}
+                        </span>
+                      ))}
                     </div>
-                    <div className="flex flex-1 flex-col text-sm">
-                      <span className="font-semibold text-white">{project.title}</span>
-                      <span className="text-xs text-zinc-400">{project.description}</span>
-                    </div>
-                    <Image
-                      src={project.badge}
-                      alt="badge"
-                      width={18}
-                      height={18}
-                      className="opacity-80"
-                      unoptimized={isIcon}
-                    />
                   </div>
-                );
-              })}
+                ))}
+              </div>
+              <div className="mt-auto pt-8 text-xs font-mono uppercase tracking-[0.35em] text-zinc-500 dark:text-zinc-400">
+                Motion • Design • Recall
+              </div>
             </div>
-            <div className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/5 px-4 py-3">
-              <div className="text-xs text-zinc-300">Explore prototypes crafted with Vercel & Vite.</div>
-              <Image src="/images/play.svg" alt="play" width={24} height={24} />
-            </div>
-          </div>
-        </BentoCard>
+          </BentoCard>
+        </div>
 
-        <BentoCard className="col-span-1 row-span-2 bg-black/50">
-          <div className="flex h-full flex-col gap-3">
-            <h2 className="text-sm font-semibold uppercase tracking-[0.4em] text-zinc-400">Visual Vibes</h2>
-            <div className="grid flex-1 grid-cols-3 gap-2">
-              {vibeBoard.map((item) => (
-                <div key={item.src} className="relative h-20 w-full overflow-hidden rounded-xl">
-                  <Image src={item.src} alt={item.alt} fill className="object-cover" />
+        <div className="flex flex-col gap-6">
+          <BentoCard className="min-h-[260px]">
+            <div className="flex h-full flex-col gap-6">
+              <div className="flex items-center gap-4">
+                <div className="relative h-16 w-16 overflow-hidden rounded-3xl border border-black/10 dark:border-white/10">
+                  <Image src="/images/profile.jpg" alt="Perfil" fill sizes="64px" className="object-cover" priority />
                 </div>
-              ))}
+                <div className="space-y-1">
+                  <span className="text-[11px] uppercase tracking-[0.35em] text-zinc-500 dark:text-zinc-400">@zywil</span>
+                  <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white">Zywil</h3>
+                </div>
+              </div>
+              <div className="space-y-3 text-sm leading-6 text-zinc-600 dark:text-zinc-300">
+                <p className="text-base font-semibold text-zinc-900 dark:text-white">I build Backends.</p>
+                <p>
+                  Hello, I'm Zywil a 21 year old developer based in SP - Brazil. I craft webapps with motion,
+                  TypeScript and cloud native tooling.
+                </p>
+                <p>Design first. Motion always.</p>
+              </div>
+              <div className="mt-auto flex items-center justify-between rounded-2xl border border-black/10 bg-white/70 px-4 py-3 text-xs text-zinc-700 shadow-[0_12px_35px_-20px_rgba(15,23,42,0.45)] dark:border-white/10 dark:bg-white/5 dark:text-zinc-300">
+                <div className="flex items-center gap-2">
+                  <span className="h-2.5 w-2.5 rounded-full bg-emerald-400" />
+                  <span>Available for work</span>
+                </div>
+                <span className="font-mono uppercase tracking-[0.35em] text-zinc-500 dark:text-zinc-400">Based in SP</span>
+              </div>
             </div>
-          </div>
-        </BentoCard>
+          </BentoCard>
 
-        <BentoCard className="col-span-1 row-span-1 bg-gradient-to-br from-cyan-500/30 via-sky-500/10 to-blue-600/30">
-          <div className="relative flex h-full items-center justify-between overflow-hidden">
-            <div className="flex flex-col gap-2">
-              <p className="text-xs uppercase tracking-[0.4em] text-white/70">Cloud sketches</p>
-              <p className="text-sm text-white/90">Motion studies &amp; weather moods.</p>
+          <BentoCard>
+            <div className="flex h-full flex-col gap-6">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-[11px] uppercase tracking-[0.4em] text-zinc-500 dark:text-zinc-400">Daily</p>
+                  <h3 className="text-xl font-semibold text-zinc-900 dark:text-white">Tool Stack.</h3>
+                </div>
+                <div className="relative h-12 w-12 overflow-hidden rounded-2xl border border-black/10 bg-white/70 dark:border-white/10 dark:bg-white/10">
+                  <Image src="/images/motion.svg" alt="motion" fill sizes="48px" className="object-contain p-2" />
+                </div>
+              </div>
+              <div className="grid flex-1 grid-cols-3 gap-3">
+                {tools.map((tool) => (
+                  <div
+                    key={tool.name}
+                    className="flex flex-col items-center gap-2 rounded-2xl border border-black/10 bg-white/80 p-3 text-center text-[11px] font-medium uppercase tracking-[0.2em] text-zinc-700 shadow-[0_12px_28px_-22px_rgba(15,23,42,0.45)] dark:border-white/10 dark:bg-white/10 dark:text-zinc-200"
+                  >
+                    <div className="relative h-10 w-10">
+                      <Image
+                        src={tool.icon}
+                        alt={tool.name}
+                        fill
+                        sizes="40px"
+                        className="object-contain"
+                      />
+                    </div>
+                    <span>{tool.name}</span>
+                  </div>
+                ))}
+              </div>
             </div>
-            <div className="relative flex h-full w-32 items-center justify-center">
-              <Image src="/images/cloud688.png" alt="cloud" fill className="object-contain opacity-70" />
-            </div>
-            <Image src="/images/cloud.png" alt="cloud" width={64} height={64} className="absolute -left-6 top-6 opacity-60" />
-            <Image src="/images/bigCloud.png" alt="cloud" width={120} height={120} className="absolute -bottom-6 right-4 opacity-50" />
-            <Image src="/images/waves.svg" alt="waves" width={180} height={80} className="absolute inset-x-0 bottom-1 opacity-30" />
-          </div>
-        </BentoCard>
+          </BentoCard>
 
-        <BentoCard className="col-span-1 row-span-1 bg-dark-2/70">
-          <div className="flex h-full items-center justify-between">
-            <div className="space-y-1 text-xs text-zinc-300">
-              <p>Inspired by anime, lo-fi, and sci-fi storytelling.</p>
-              <p className="font-mono text-[10px] uppercase tracking-[0.4em] text-zinc-500">studio yzy</p>
+          <BentoCard className="p-6">
+            <NasaCard />
+          </BentoCard>
+        </div>
+
+        <div className="flex flex-col gap-6">
+          <BentoCard>
+            <div className="flex h-full flex-col gap-5">
+              <div className="flex items-center justify-between">
+                <h3 className="text-lg font-semibold uppercase tracking-[0.4em] text-zinc-900 dark:text-white">Links.</h3>
+                <div className="flex h-10 w-10 items-center justify-center rounded-2xl border border-black/10 bg-white/70 text-sm font-mono uppercase tracking-[0.35em] text-zinc-500 dark:border-white/10 dark:bg-white/10 dark:text-zinc-400">
+                  L
+                </div>
+              </div>
+              <div className="grid grid-cols-3 gap-3">
+                {socials.map((social) => (
+                  <Link
+                    key={social.name}
+                    href={social.href}
+                    className="flex h-12 w-12 items-center justify-center rounded-2xl border border-black/10 bg-white/70 p-2 transition-transform duration-200 hover:-translate-y-1 hover:border-black/20 dark:border-white/10 dark:bg-white/5"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <Image src={social.icon} alt={social.name} width={24} height={24} className="object-contain" />
+                  </Link>
+                ))}
+              </div>
             </div>
-            <div className="relative h-16 w-16">
-              <Image src="/images/elipse.svg" alt="ellipse" fill className="object-contain" />
-              <Image src="/images/favicon.png" alt="fav" width={24} height={24} className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2" />
+          </BentoCard>
+
+          <BentoCard className="relative overflow-hidden border-none bg-gradient-to-br from-[#b18aff] via-[#8e7eff] to-[#6b9dff] p-6 text-white shadow-[0_40px_90px_-45px_rgba(109,117,255,0.7)]">
+            <div className="pointer-events-none absolute inset-0 opacity-50">
+              <Image src="/images/v0.svg" alt="Project swirl" fill sizes="(min-width: 1024px) 260px, 80vw" className="object-cover" />
             </div>
-          </div>
-        </BentoCard>
+            <div className="relative z-10 flex h-full flex-col justify-between">
+              <div className="space-y-3">
+                <p className="text-[11px] uppercase tracking-[0.45em] text-white/70">Project</p>
+                <h3 className="text-3xl font-semibold tracking-[0.25em]">SSS</h3>
+                <p className="max-w-[180px] text-sm text-white/80">
+                  Framer Motion experiments with shadcn/ui components and micro interactions.
+                </p>
+              </div>
+              <div className="flex items-center justify-between text-sm text-white/80">
+                <span>Prototype ready</span>
+                <Image src="/images/play.svg" alt="Play" width={28} height={28} />
+              </div>
+            </div>
+          </BentoCard>
+
+          <BentoCard>
+            <div className="flex h-full flex-col gap-4">
+              <header className="flex items-center justify-between">
+                <p className="text-[11px] uppercase tracking-[0.35em] text-zinc-500 dark:text-zinc-400">Daily vibe</p>
+                <Image src="/images/elipse.svg" alt="Ellipse" width={36} height={36} className="opacity-80 dark:opacity-70" />
+              </header>
+              <div className="grid grid-cols-2 gap-3">
+                {vibeShots.map((shot) => (
+                  <div
+                    key={shot.src}
+                    className="relative aspect-square overflow-hidden rounded-2xl border border-black/10 bg-white/70 dark:border-white/10 dark:bg-white/5"
+                  >
+                    <Image src={shot.src} alt={shot.alt} fill sizes="(min-width: 1024px) 120px, 40vw" className="object-cover" />
+                  </div>
+                ))}
+              </div>
+              <p className="text-xs leading-5 text-zinc-600 dark:text-zinc-300">
+                Inspired by anime, lo-fi and sci-fi storytelling. Studio yzy keeps the vibe alive.
+              </p>
+            </div>
+          </BentoCard>
+        </div>
       </BentoGrid>
     </main>
   );
