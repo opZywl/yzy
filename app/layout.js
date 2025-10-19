@@ -120,7 +120,7 @@ export default function RootLayout({ children }) {
           spaceGrotesk.variable,
           glancyr.variable,
           glancyr700.variable,
-          'bg-dark-1 dark:bg-white font-spaceGrotesk'
+          'bg-white text-dark-4 dark:bg-dark-1 dark:text-white font-spaceGrotesk'
         )}
       >
         <ThemeProvider>{children}</ThemeProvider>

@@ -15,7 +15,7 @@ export function ThemeToggle() {
     >
       <p
         className={clsx(
-          'relative w-[1.2rem] scale-100 transition-all duration-100 text-white dark:text-zinc-500 font-bold hover:[box-shadow:1px_1px_50px_-1px_#fff] bg-none rounded-full',
+          'relative w-[1.2rem] scale-100 transition-all duration-100 text-dark-4 dark:text-zinc-500 font-bold hover:[box-shadow:1px_1px_30px_-4px_#111] bg-none rounded-full',
           'dark:scale-0'
         )}
       >
@@ -23,7 +23,7 @@ export function ThemeToggle() {
       </p>
       <p
         className={clsx(
-          'absolute w-[1.2rem] scale-0 transition-all duration-100 text-zinc-500 dark:text-black font-bold hover:[box-shadow:1px_1px_50px_20px_#c6c6c650] bg-none rounded-full',
+          'absolute w-[1.2rem] scale-0 transition-all duration-100 text-zinc-500 dark:text-white font-bold hover:[box-shadow:1px_1px_50px_20px_#c6c6c650] bg-none rounded-full',
           'dark:scale-100'
         )}
       >
