@@ -111,7 +111,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" suppressHydrationWarning className="light">
+    <html lang="en" suppressHydrationWarning className="light" data-theme="light">
       <head>
         <ThemeScript />
       </head>
@@ -122,6 +122,7 @@ export default function RootLayout({ children }) {
           glancyr700.variable,
           'bg-white text-dark-4 dark:bg-dark-1 dark:text-white font-spaceGrotesk'
         )}
+        data-theme="light"
       >
         <ThemeProvider>{children}</ThemeProvider>
       </body>

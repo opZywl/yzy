@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ThemeToggle } from './theme-toggle';
+import { useTheme } from './theme-provider';
 
 const cardStyle = {
   WebkitTouchCallout: 'none',
@@ -98,7 +99,103 @@ const rippleCircles = [
   { size: 790, opacity: 0.02, delay: 0.42, borderOpacity: 0.4, dashed: true },
 ];
 
+function LightBackground() {
+  return (
+    <>
+      <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+        <svg
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 h-full w-full skew-y-12 animate-gridGlow fill-transparent stroke-black/10 [mask-image:radial-gradient(800px_circle_at_center,white,transparent)] motion-reduce:animate-none sm:stroke-dark-1/40"
+        >
+          <defs>
+            <pattern id="light-grid" width="40" height="40" patternUnits="userSpaceOnUse" x="-1" y="-1">
+              <path d="M.5 40V.5H40" fill="none" strokeDasharray="10" />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#light-grid)" />
+        </svg>
+      </div>
+      <div className="pointer-events-none absolute inset-0 -z-20 flex h-full w-full items-center justify-center overflow-hidden">
+        <Image
+          alt="elipse"
+          src="/images/elipse.svg"
+          width={1080}
+          height={1080}
+          priority
+          className="absolute inset-0 h-full w-full object-cover opacity-90 lg:object-fill"
+          draggable={false}
+        />
+        <Image
+          alt="big cloud"
+          src="/images/bigCloud.png"
+          width={1495}
+          height={521}
+          priority
+          className="absolute w-full object-cover lg:h-[550px] lg:object-contain lg:-bottom-[180px] -bottom-0 h-[350px]"
+          draggable={false}
+        />
+        <Image
+          alt="cloud crop"
+          src="/images/cloudCrop.png"
+          width={688}
+          height={721}
+          priority
+          className="absolute top-[20%] w-[60%] object-contain lg:left-0 lg:top-12 lg:w-[687px] -left-0"
+          draggable={false}
+        />
+        <Image
+          alt="cloud"
+          src="/images/cloud.png"
+          width={498}
+          height={246}
+          priority
+          className="absolute top-[800px] w-[497px] object-contain max-sm:-left-20 lg:top-20 lg:-right-0"
+          draggable={false}
+        />
+        <Image
+          alt="cloud"
+          src="/images/cloud.png"
+          width={498}
+          height={246}
+          priority
+          className="absolute left-16 top-[150px] w-[497px] object-contain lg:top-0"
+          draggable={false}
+        />
+        <div
+          className="absolute left-1/2 top-1/2 h-[110px] w-full max-w-[1000px] -translate-x-1/2 -translate-y-1/2 opacity-100"
+          style={{ borderRadius: '100%', mixBlendMode: 'plus-lighter', filter: 'blur(180px)' }}
+        />
+      </div>
+    </>
+  );
+}
+
+function DarkBackground() {
+  return (
+    <div className="pointer-events-none absolute inset-0 -z-10 flex h-full w-full items-center justify-center">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(88,88,255,0.25),transparent_55%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom,rgba(45,212,191,0.18),transparent_60%)]" />
+      <div className="absolute inset-0 bg-gradient-to-b from-[#0f0f11] via-[#09090b] to-[#050506] opacity-90" />
+      <svg
+        aria-hidden="true"
+        className="absolute inset-0 h-full w-full skew-y-12 animate-gridGlow fill-transparent stroke-white/10 motion-reduce:animate-none"
+      >
+        <defs>
+          <pattern id="dark-grid" width="40" height="40" patternUnits="userSpaceOnUse" x="-1" y="-1">
+            <path d="M.5 40V.5H40" fill="none" strokeDasharray="10" />
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#dark-grid)" />
+      </svg>
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.08),transparent_65%)] blur-3xl" />
+    </div>
+  );
+}
+
 export function HomePage() {
+  const { theme } = useTheme();
+  const isDark = theme === 'dark';
+
   return (
     <main className="min-h-screen flex items-center justify-center relative mx-auto max-w-5xl font-spaceGrotesk">
       <div className="flex items-center justify-center max-sm:flex-col sm:flex-row bg-transparent">
@@ -467,65 +564,7 @@ export function HomePage() {
           <p className="text-dark-4 dark:text-white font-bold">peace out.</p>
         </div>
       </div>
-      <div className="absolute inset-0 size-full overflow-hidden dark:hidden">
-        <svg
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 sm:fill-zinc-600/30 sm:stroke-dark-1/40 stroke-black/10 dark:sm:stroke-zinc-300 dark:stroke-zinc-300 [mask-image:radial-gradient(800px_circle_at_center,white,transparent)] w-full inset-x-0 inset-y-[-0%] h-[105%] max-sm:h-[90%] skew-y-12 animate-gridGlow motion-reduce:animate-none"
-        >
-          <defs>
-            <pattern id="grid-pattern" width="40" height="40" patternUnits="userSpaceOnUse" x="-1" y="-1">
-              <path d="M.5 40V.5H40" fill="none" strokeDasharray="10" />
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#grid-pattern)" />
-        </svg>
-      </div>
-      <div className="h-[180dvh] lg:h-[100dvh] p-4 max-w-[1920px] mx-auto w-full items-center justify-center overflow-hidden absolute top-0 inset-0 size-full -z-10 flex dark:hidden">
-        <Image
-          alt="elipse"
-          src="/images/elipse.svg"
-          width={1080}
-          height={1080}
-          className="absolute inset-0 size-full object-cover opacity-90 lg:object-fill z-0"
-          draggable={false}
-        />
-        <Image
-          alt="big cloud"
-          src="/images/bigCloud.png"
-          width={1495}
-          height={521}
-          className="w-full -bottom-0 h-[350px] lg:h-[550px] lg:-bottom-[180px] absolute object-cover lg:object-contain"
-          draggable={false}
-        />
-        <Image
-          alt="cloud crop"
-          src="/images/cloud688.png"
-          width={688}
-          height={721}
-          className="w-[60%] lg:w-[687px] -left-0 top-[20%] lg:top-12 absolute object-contain"
-          draggable={false}
-        />
-        <Image
-          alt="cloud"
-          src="/images/cloud.png"
-          width={498}
-          height={246}
-          className="w-[497px] max-sm:-left-20 lg:-right-0 top-[800px] lg:top-20 absolute object-contain z-50"
-          draggable={false}
-        />
-        <Image
-          alt="cloud"
-          src="/images/cloud.png"
-          width={498}
-          height={246}
-          className="w-[497px] left-16 top-[150px] z-50 lg:top-0 absolute object-contain"
-          draggable={false}
-        />
-        <div
-          className="absolute opacity-100 top-1/2 left-[54%] -translate-x-1/2 -translate-y-1/2 z-30 w-full max-w-[1000px] h-[110px] lg:h-[700px] dark:bg-white/95"
-          style={{ borderRadius: '100%', mixBlendMode: 'plus-lighter', filter: 'blur(180px)', position: 'absolute' }}
-        />
-      </div>
+      {isDark ? <DarkBackground /> : <LightBackground />}
     </main>
   );
 }
